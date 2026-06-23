@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Гайд по восстановлению после родов</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #faf6f0;
+            color: #2b2622;
+            padding: 20px;
+            line-height: 1.6;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            padding: 30px;
+            border-radius: 16px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+        }
+        h1 { color: #8b3a5e; font-size: 26pt; margin-bottom: 10px; }
+        .sub { color: #6b6357; margin-bottom: 30px; font-size: 12pt; }
+        .section { margin-bottom: 30px; }
+        .section h2 { color: #8b3a5e; font-size: 18pt; border-bottom: 2px solid #8b3a5e; padding-bottom: 8px; margin-bottom: 15px; }
+        .exercise-card {
+            background: #faf6f0;
+            border: 1px solid #e2dcd0;
+            border-radius: 10px;
+            padding: 12px 16px;
+            margin-bottom: 10px;
+            cursor: pointer;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .exercise-card:hover { border-color: #8b3a5e; background: #f5ede4; }
+        .exercise-card .emoji { font-size: 24pt; }
+        .exercise-card .info .name { font-weight: 600; font-size: 11pt; }
+        .exercise-card .info .hint { font-size: 9pt; color: #8a8273; }
+        .flags-box {
+            background: #fdf1ea;
+            border: 1px solid #f0d4ba;
+            border-radius: 8px;
+            padding: 12px 16px;
+            margin: 15px 0;
+        }
+        .flags-box .title { font-weight: 700; color: #6b2a48; }
+        .flags-box ul { padding-left: 20px; margin-top: 6px; }
+        .flags-box li { margin-bottom: 4px; }
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.5);
+            backdrop-filter: blur(4px);
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+        .modal-overlay.open { display: flex; }
+        .modal-box {
+            background: white;
+            max-width: 500px;
+            width: 92%;
+            padding: 24px;
+            border-radius: 16px;
+            max-height: 90vh;
+            overflow-y: auto;
+            position: relative;
+        }
+        .modal-box .close-btn {
+            position: absolute;
+            top: 10px;
+            right: 16px;
+            font-size: 24pt;
+            cursor: pointer;
+            color: #a0aec0;
+            background: none;
+            border: none;
+        }
+        .modal-box .modal-video {
+            width: 100%;
+            border-radius: 8px;
+            max-height: 200px;
+            object-fit: cover;
+            margin-bottom: 12px;
+        }
+        .modal-box h3 { font-size: 18pt; color: #0b2b4a; margin-bottom: 6px; }
+        .modal-box .modal-desc { color: #2d3748; font-size: 11pt; }
+        .modal-box .modal-reps {
+            background: #f4f6f0;
+            padding: 10px 14px;
+            border-radius: 8px;
+            font-weight: 600;
+            color: #2d5a3d;
+            margin-top: 10px;
+        }
+        .btn-back {
+            display: inline-block;
+            margin-top: 20px;
+            background: #8b3a5e;
+            color: white;
+            padding: 10px 24px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+        }
+        .btn-back:hover { background: #6b2a48; }
+        .footer { margin-top: 30px; font-size: 9.5pt; color: #b3aa99; text-align: center; }
+        @media (max-width: 600px) { body { padding: 10px; } .container { padding: 16px; } }
+    </style>
+</head>
+<body>
+<div class="container" id="app">
+    <h1>🤱 Восстановление после родов</h1>
+    <div class="sub">Поэтапный план упражнений для естественных родов и кесарева сечения</div>
+
+    <!-- ФАЗА 1 -->
+    <div class="section">
+        <h2>Фаза 1 · 0–6 недель</h2>
+        <div class="flags-box">
+            <div class="title">🚩 Немедленно прекратить и обратиться к врачу, если:</div>
+            <ul>
+                <li>Усиление боли в промежности</li>
+                <li>Возобновление ярко-красного кровотечения</li>
+                <li>Чувство тяжести или «выпадения» во влагалище</li>
+                <li>Признаки инфекции: лихорадка, неприятный запах, покраснение и боль в области швов</li>
+            </ul>
+        </div>
+        <div class="exercise-card" data-exercise="diaphragmatic">
+            <div class="emoji">🌬️</div>
+            <div class="info"><div class="name">Дыхание животом (диафрагмальное)</div><div class="hint">нажмите для техники</div></div>
+        </div>
+        <div class="exercise-card" data-exercise="kegel-slow">
+            <div class="emoji">⏳</div>
+            <div class="info"><div class="name">Изолированные сокращения (медленные)</div><div class="hint">нажмите для техники</div></div>
+        </div>
+        <div class="exercise-card" data-exercise="pelvic-tilt">
+            <div class="emoji">🔄</div>
+            <div class="info"><div class="name">Наклон таза</div><div class="hint">нажмите для техники</div></div>
+        </div>
+    </div>
+
+    <!-- ФАЗА 2 -->
+    <div class="section">
+        <h2>Фаза 2 · 6–12 недель</h2>
+        <div class="flags-box">
+            <div class="title">🚩 Обратиться к врачу или специалисту по работе с тазовым дном, если:</div>
+            <ul>
+                <li>Недержание мочи во время упражнений</li>
+                <li>Постоянная боль в спине или области таза</li>
+                <li>Плохое заживление швов</li>
+            </ul>
+        </div>
+        <div class="exercise-card" data-exercise="kegel-fast">
+            <div class="emoji">⚡</div>
+            <div class="info"><div class="name">Изолированные сокращения (быстрые)</div><div class="hint">нажмите для техники</div></div>
+        </div>
+        <div class="exercise-card" data-exercise="glute-bridge">
+            <div class="emoji">⬆️</div>
+            <div class="info"><div class="name">Ягодичный мостик</div><div class="hint">нажмите для техники</div></div>
+        </div>
+        <div class="exercise-card" data-exercise="dead-bug">
+            <div class="emoji">🐞</div>
+            <div class="info"><div class="name">«Мёртвый жук»</div><div class="hint">нажмите для техники</div></div>
+        </div>
+    </div>
+
+    <!-- ФАЗА 3 -->
+    <div class="section">
+        <h2>Фаза 3 · 3–6 месяцев</h2>
+        <div class="flags-box">
+            <div class="title">🚩 Вернуться на предыдущий этап, если:</div>
+            <ul>
+                <li>Любое недержание во время бега или прыжков</li>
+                <li>Ощущение тяжести или давления внизу живота / влагалища</li>
+                <li>«Конус» на животе сохраняется</li>
+            </ul>
+        </div>
+        <div class="exercise-card" data-exercise="couch-to-5k">
+            <div class="emoji">🏃‍♀️</div>
+            <div class="info"><div class="name">От ходьбы к бегу</div><div class="hint">нажмите для техники</div></div>
+        </div>
+        <div class="exercise-card" data-exercise="core-advanced">
+            <div class="emoji">💪</div>
+            <div class="info"><div class="name">Упражнения на мышцы кора</div><div class="hint">нажмите для техники</div></div>
+        </div>
+    </div>
+
+    <a href="index.html" class="btn-back">← На главную</a>
+    <div class="footer">© Кузменькова Елена · @lena.galanova</div>
+</div>
+
+<!-- МОДАЛЬНОЕ ОКНО -->
+<div class="modal-overlay" id="modalOverlay">
+    <div class="modal-box">
+        <button class="close-btn" id="modalClose">✕</button>
+        <video class="modal-video" id="modalVideo" autoplay muted playsinline loop>
+            <source src="" type="video/mp4">
+        </video>
+        <h3 id="modalTitle">Название</h3>
+        <div class="modal-desc" id="modalDesc">Описание</div>
+        <div class="modal-reps" id="modalReps">Повторения</div>
+    </div>
+</div>
+
+<script>
+    const EXERCISE_DATA = {
+        'diaphragmatic': {
+            title: '🌬️ Дыхание животом',
+            video: 'diaphragmatic.mp4',
+            desc: 'Лежа на спине с согнутыми коленями, руки на животе. Вдох — живот поднимается, выдох — опускается.',
+            reps: '2–3 раза в день по 5–10 глубоких циклов'
+        },
+        'kegel-slow': {
+            title: '⏳ Изолированные сокращения (медленные)',
+            video: 'kegel-slow.mp4',
+            desc: 'Сожмите мышцы, как будто пытаетесь остановить мочеиспускание, и удерживайте.',
+            reps: 'Удержание 5–10 сек · 10 повторений · 3 раза в день'
+        },
+        'pelvic-tilt': {
+            title: '🔄 Наклон таза',
+            video: 'pelvic-tilt.mp4',
+            desc: 'Лежа на спине, согнув колени, прижмите поясницу к полу, напрягая ягодицы и низ живота.',
+            reps: '10–15 повторений'
+        },
+        'kegel-fast': {
+            title: '⚡ Изолированные сокращения (быстрые)',
+            video: 'kegel-fast.mp4',
+            desc: 'Сожмите и сразу расслабьте мышцы тазового дна в быстром темпе.',
+            reps: '10 быстрых + 10 медленных, 3 подхода в день'
+        },
+        'glute-bridge': {
+            title: '⬆️ Ягодичный мостик',
+            video: 'glute-bridge.mp4',
+            desc: 'Лежа на спине, согнув колени, поднимите таз вверх, напрягая ягодицы.',
+            reps: '3 подхода по 15 повторений'
+        },
+        'dead-bug': {
+            title: '🐞 «Мёртвый жук»',
+            video: 'dead-bug.mp4',
+            desc: 'Лежа на спине, согните колени под 90°. Поочередно выпрямляйте одну ногу, скользя пяткой по полу.',
+            reps: '2 подхода по 10–12 раз на каждую ногу'
+        },
+        'couch-to-5k': {
+            title: '🏃‍♀️ От ходьбы к бегу',
+            video: 'couch-to-5k.mp4',
+            desc: 'Программа «ходьба-бег»: начинайте с интервалов, постепенно увеличивая время бега.',
+            reps: '3 раза в неделю'
+        },
+        'core-advanced': {
+            title: '💪 Упражнения на мышцы кора',
+            video: 'core-advanced.mp4',
+            desc: 'Скручивания, планка, подъемы ног — только если нет «конуса» на животе.',
+            reps: '2–3 подхода по 10–15 повторений'
+        }
+    };
+
+    const modalOverlay = document.getElementById('modalOverlay');
+    const modalClose = document.getElementById('modalClose');
+    const modalVideo = document.getElementById('modalVideo');
+    const modalTitle = document.getElementById('modalTitle');
+    const modalDesc = document.getElementById('modalDesc');
+    const modalReps = document.getElementById('modalReps');
+
+    function openModal(key) {
+        const data = EXERCISE_DATA[key];
+        if (!data) return;
+        modalTitle.textContent = data.title;
+        modalDesc.textContent = data.desc;
+        modalReps.textContent = data.reps;
+        modalVideo.src = data.video || '';
+        modalVideo.load();
+        modalVideo.play().catch(() => {});
+        modalOverlay.classList.add('open');
+        document.body.style.overflow = 'hidden';
+    }
+
+    function closeModal() {
+        modalOverlay.classList.remove('open');
+        document.body.style.overflow = '';
+        modalVideo.pause();
+        modalVideo.currentTime = 0;
+    }
+
+    document.querySelectorAll('.exercise-card').forEach(card => {
+        card.addEventListener('click', function() {
+            const key = this.dataset.exercise;
+            if (key) openModal(key);
+        });
+    });
+
+    modalClose.addEventListener('click', closeModal);
+    modalOverlay.addEventListener('click', e => { if (e.target === modalOverlay) closeModal(); });
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+</script>
+</body>
+</html>
