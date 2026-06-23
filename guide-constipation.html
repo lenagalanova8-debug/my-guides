@@ -1,366 +1,857 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Гайд по профилактике запоров после родов</title>
-    <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            background: #faf6f0;
-            color: #2b2622;
-            padding: 20px;
-            line-height: 1.6;
-        }
-        .container {
-            max-width: 800px;
-            margin: 0 auto;
-            background: white;
-            padding: 30px;
-            border-radius: 16px;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.06);
-        }
-        h1 { color: #2d5a3d; font-size: 26pt; margin-bottom: 10px; }
-        .sub { color: #6b6357; margin-bottom: 30px; font-size: 12pt; }
-        .section { margin-bottom: 30px; }
-        .section h2 { color: #2d5a3d; font-size: 18pt; border-bottom: 2px solid #2d5a3d; padding-bottom: 8px; margin-bottom: 15px; }
-        .exercise-card {
-            background: #faf6f0;
-            border: 1px solid #e2dcd0;
-            border-radius: 10px;
-            padding: 12px 16px;
-            margin-bottom: 10px;
-            cursor: pointer;
-            transition: all 0.2s;
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
-        .exercise-card:hover { border-color: #2d5a3d; background: #f0f5ed; }
-        .exercise-card .emoji { font-size: 24pt; }
-        .exercise-card .info .name { font-weight: 600; font-size: 11pt; }
-        .exercise-card .info .hint { font-size: 9pt; color: #8a8273; }
-        .flags-box {
-            background: #fdf1ea;
-            border: 1px solid #f0d4ba;
-            border-radius: 8px;
-            padding: 12px 16px;
-            margin: 15px 0;
-        }
-        .flags-box .title { font-weight: 700; color: #6b2a48; }
-        .flags-box ul { padding-left: 20px; margin-top: 6px; }
-        .flags-box li { margin-bottom: 4px; }
-        .modal-overlay {
-            display: none;
-            position: fixed;
-            inset: 0;
-            background: rgba(0,0,0,0.5);
-            backdrop-filter: blur(4px);
-            justify-content: center;
-            align-items: center;
-            z-index: 1000;
-        }
-        .modal-overlay.open { display: flex; }
-        .modal-box {
-            background: white;
-            max-width: 500px;
-            width: 92%;
-            padding: 24px;
-            border-radius: 16px;
-            max-height: 90vh;
-            overflow-y: auto;
-            position: relative;
-        }
-        .modal-box .close-btn {
-            position: absolute;
-            top: 10px;
-            right: 16px;
-            font-size: 24pt;
-            cursor: pointer;
-            color: #a0aec0;
-            background: none;
-            border: none;
-        }
-        .modal-box .modal-video {
-            width: 100%;
-            border-radius: 8px;
-            max-height: 200px;
-            object-fit: cover;
-            margin-bottom: 12px;
-        }
-        .modal-box h3 { font-size: 18pt; color: #0b2b4a; margin-bottom: 6px; }
-        .modal-box .modal-desc { color: #2d3748; font-size: 11pt; }
-        .modal-box .modal-reps {
-            background: #f4f6f0;
-            padding: 10px 14px;
-            border-radius: 8px;
-            font-weight: 600;
-            color: #2d5a3d;
-            margin-top: 10px;
-        }
-        .btn-back {
-            display: inline-block;
-            margin-top: 20px;
-            background: #2d5a3d;
-            color: white;
-            padding: 10px 24px;
-            border-radius: 30px;
-            text-decoration: none;
-            font-weight: 600;
-        }
-        .btn-back:hover { background: #1e402a; }
-        .footer { margin-top: 30px; font-size: 9.5pt; color: #b3aa99; text-align: center; }
-        .bristol-chart {
-            background: #faf6f0;
-            border-radius: 12px;
-            padding: 16px;
-            border: 1px solid #e2dcd0;
-            margin: 15px 0;
-        }
-        .bristol-row {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            padding: 4px 6px;
-            border-bottom: 1px solid #f0ebe0;
-            font-size: 10.5pt;
-        }
-        .bristol-row:last-child { border-bottom: none; }
-        .bristol-row .type { font-weight: 600; color: #6b2a48; width: 50px; flex-shrink: 0; font-size: 9.5pt; }
-        .bristol-row .icon { width: 50px; flex-shrink: 0; text-align: center; font-size: 20pt; }
-        .bristol-row .desc { color: #3a342c; flex: 1; }
-        .bristol-row .status {
-            font-size: 8.5pt; font-weight: bold; text-transform: uppercase;
-            padding: 2px 8px; border-radius: 12px; flex-shrink: 0;
-        }
-        .status.constipation { background: #f9e4e0; color: #8c3a2a; }
-        .status.normal { background: #e4f0e0; color: #2d5a3d; }
-        .status.diarrhea { background: #fdf1ea; color: #a4502c; }
-        .goal-box {
-            background: #2d5a3d; color: #faf6f0;
-            border-radius: 8px; padding: 16px; margin: 10px 0;
-        }
-        .goal-box .goal-label {
-            font-size: 9pt; letter-spacing: 2px; text-transform: uppercase;
-            color: #e8ddc9; font-weight: bold; display: block; margin-bottom: 4px;
-        }
-        @media (max-width: 600px) { body { padding: 10px; } .container { padding: 16px; } }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Памятка по профилактике запоров после родов</title>
+<style>
+@page { size: A4; margin: 0; }
+* { box-sizing: border-box; }
+body {
+  font-family: 'DejaVu Sans', sans-serif;
+  color: #2b2622;
+  font-size: 12pt;
+  line-height: 1.65;
+  margin: 0;
+  padding: 0;
+  background: #faf6f0;
+}
+h1, h2, h3, .display { font-family: 'Lora', serif; }
+
+/* палитра */
+/* bg cream: #faf6f0, ink: #2b2622, dark rose: #8b3a5e, dark rose-d: #6b2a48, dark sage: #2d5a3d, dark sage-d: #1e402a, sand: #e8ddc9, line: #ddd0bb */
+
+.page {
+  width: 210mm;
+  min-height: 297mm;
+  position: relative;
+  overflow: hidden;
+  page-break-after: always;
+  background: #ffffff;
+  margin: 0 auto;
+}
+.page:last-child { page-break-after: auto; }
+
+.cover { background: #faf6f0; }
+.cover .band-top { position: absolute; top: 0; left: 0; right: 0; height: 14mm; background: #2d5a3d; }
+.cover .band-bottom { position: absolute; bottom: 0; left: 0; right: 0; height: 14mm; background: #8b3a5e; }
+.cover-content { position: absolute; top: 0; left: 0; right: 0; bottom: 0; padding: 38mm 24mm 0 24mm; }
+.cover-eyebrow { font-size: 12pt; letter-spacing: 3px; text-transform: uppercase; color: #1e402a; font-weight: bold; margin-bottom: 10mm; }
+.cover-title { font-size: 42pt; line-height: 1.12; color: #2b2622; font-weight: 700; margin: 0 0 6mm 0; }
+.cover-title em { font-style: normal; color: #2d5a3d; }
+.cover-subtitle { font-size: 15pt; color: #5d574c; max-width: 130mm; line-height: 1.5; margin-bottom: 14mm; }
+.cover-divider { width: 28mm; height: 2.2pt; background: #8b3a5e; margin-bottom: 10mm; }
+.cover-meta { font-size: 11pt; color: #6b6357; }
+.cover-meta div { margin-bottom: 2mm; }
+.cover-meta strong { color: #2b2622; }
+.cover-tags { position: absolute; top: 38mm; right: 24mm; text-align: right; }
+.cover-pill { display: inline-block; font-size: 9pt; letter-spacing: 0.5px; text-transform: uppercase; color: #8b3a5e; border: 1pt solid #8b3a5e; border-radius: 20pt; padding: 2.2mm 5mm; margin-left: 2mm; }
+.cover-disclaimer { position: absolute; bottom: 20mm; left: 24mm; right: 24mm; font-size: 9.5pt; color: #8a8273; border-top: 0.75pt solid #ddd0bb; padding-top: 5mm; line-height: 1.5; }
+
+.about-page { background: #faf6f0; padding: 24mm 22mm; }
+.about-photos { display: flex; gap: 8mm; margin: 6mm 0 8mm 0; justify-content: center; }
+.about-photo { width: 100%; max-width: 80mm; aspect-ratio: 1/1; background: #e8ddc9; border-radius: 12px; overflow: hidden; display: flex; align-items: center; justify-content: center; font-size: 40pt; color: #b3aa99; border: 2px dashed #8b3a5e; }
+.about-photo img { width: 100%; height: 100%; object-fit: cover; }
+.about-text { font-size: 12.5pt; line-height: 1.7; color: #3a342c; max-width: 140mm; margin: 0 auto; }
+.about-text strong { color: #2d5a3d; }
+.about-contacts { margin-top: 8mm; padding-top: 6mm; border-top: 1pt solid #ddd0bb; font-size: 11pt; color: #6b6357; }
+.about-contacts a { color: #8b3a5e; text-decoration: none; }
+.about-contacts a:hover { text-decoration: underline; }
+
+.toc-page { background: #ffffff; padding: 24mm 22mm; }
+.toc-header { margin-bottom: 14mm; }
+.toc-eyebrow { font-size: 11pt; letter-spacing: 3px; text-transform: uppercase; color: #2d5a3d; font-weight: bold; margin-bottom: 3mm; }
+.toc-title { font-size: 28pt; color: #2b2622; font-weight: 700; }
+.toc-rule { height: 2pt; background: #2b2622; width: 100%; margin: 6mm 0 12mm 0; }
+.toc-part-label { font-size: 11pt; letter-spacing: 1.5px; text-transform: uppercase; color: #1e402a; font-weight: bold; margin: 7mm 0 3mm 0; }
+.toc-part-label.sage { color: #8b3a5e; }
+.toc-item { display: flex; align-items: baseline; padding: 2.6mm 0; font-size: 12pt; }
+.toc-num { font-family: 'Lora', serif; font-weight: 600; color: #2d5a3d; width: 10mm; flex-shrink: 0; font-size: 12pt; }
+.toc-item.sage .toc-num { color: #8b3a5e; }
+.toc-name { flex-shrink: 0; }
+.toc-fill { flex: 1; border-bottom: 0.75pt dotted #c9bca3; margin: 0 2mm 1.4mm 2mm; }
+.toc-page-num { flex-shrink: 0; color: #8a8273; font-size: 10pt; }
+.toc-sub { font-size: 10pt; color: #8a8273; margin-left: 10mm; margin-top: -0.5mm; margin-bottom: 1.5mm; }
+
+.content-page { background: #ffffff; padding: 20mm 22mm 24mm 22mm; }
+.page-tab { position: absolute; top: 0; right: 0; font-size: 9pt; letter-spacing: 1px; text-transform: uppercase; color: #ffffff; background: #2b2622; padding: 2.2mm 6mm 2mm 6mm; border-radius: 0 0 0 2.5mm; }
+.page-tab.terracotta { background: #8b3a5e; }
+.page-tab.sage { background: #2d5a3d; }
+.section-kicker { font-size: 11pt; letter-spacing: 2.5px; text-transform: uppercase; font-weight: bold; margin-bottom: 3mm; }
+.section-kicker.terracotta { color: #8b3a5e; }
+.section-kicker.sage { color: #2d5a3d; }
+.section-kicker.ink { color: #6b6357; }
+h1.page-title { font-size: 26pt; color: #2b2622; font-weight: 700; margin: 0 0 4mm 0; line-height: 1.2; }
+.intro-text { font-size: 12.5pt; line-height: 1.7; color: #3a342c; margin-bottom: 5mm; }
+.callout { background: #faf6f0; border-left: 3pt solid #2d5a3d; padding: 5mm 6mm; margin: 6mm 0; font-size: 11pt; line-height: 1.6; border-radius: 1mm; }
+.callout strong { color: #1e402a; }
+.callout.sage { border-left-color: #8b3a5e; background: #faf6f0; }
+.callout.sage strong { color: #6b2a48; }
+.stat-grid { display: flex; gap: 5mm; margin: 8mm 0; }
+.stat-box { flex: 1; background: #faf6f0; border-radius: 2mm; padding: 6mm 5mm; text-align: center; }
+.stat-num { font-family: 'Lora', serif; font-size: 26pt; font-weight: 700; color: #2d5a3d; display: block; line-height: 1; margin-bottom: 2mm; }
+.stat-label { font-size: 9.5pt; color: #6b6357; line-height: 1.4; }
+.how-to-use { margin-top: 8mm; }
+.htu-row { display: flex; align-items: flex-start; gap: 4mm; margin-bottom: 4.5mm; }
+.htu-icon { width: 8mm; height: 8mm; border-radius: 50%; background: #8b3a5e; flex-shrink: 0; margin-top: 0.5mm; }
+.htu-row:nth-child(2) .htu-icon { background: #2d5a3d; }
+.htu-row:nth-child(3) .htu-icon { background: #6b2a48; }
+.htu-row:nth-child(4) .htu-icon { background: #2d5a3d; }
+.htu-text { font-size: 11.5pt; line-height: 1.55; padding-top: 0.3mm; }
+.htu-text strong { color: #2b2622; }
+.page-footer { position: absolute; bottom: 10mm; left: 22mm; right: 22mm; display: flex; justify-content: space-between; font-size: 9pt; color: #b3a98f; border-top: 0.5pt solid #e8ddc9; padding-top: 3mm; }
+
+.goal-box { background: #2d5a3d; color: #faf6f0; border-radius: 2mm; padding: 5mm 6mm; margin: 5mm 0 6mm 0; font-size: 11.5pt; line-height: 1.55; }
+.goal-box .goal-label { font-size: 9.5pt; letter-spacing: 2px; text-transform: uppercase; color: #e8ddc9; font-weight: bold; margin-bottom: 1.5mm; display: block; }
+
+.flags-box { background: #fdf1ea; border: 1pt solid #f0d4ba; border-radius: 2mm; padding: 4.5mm 5.5mm; margin-bottom: 5mm; }
+.flags-title { font-size: 10.5pt; font-weight: bold; color: #6b2a48; margin-bottom: 2.5mm; display: flex; align-items: center; gap: 2mm; }
+.flags-list { font-size: 10.5pt; line-height: 1.6; color: #5a4030; margin: 0; padding-left: 4mm; }
+.flags-list li { margin-bottom: 1mm; }
+
+.exercise-card {
+  background: #faf6f0;
+  border: 1px solid #e2dcd0;
+  border-radius: 10px;
+  padding: 0.9rem 1rem;
+  margin-bottom: 0.6rem;
+  cursor: pointer;
+  transition: all 0.2s;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.exercise-card:hover { border-color: #2d5a3d; background: #f0f5ed; transform: translateY(-2px); box-shadow: 0 4px 12px rgba(45, 90, 61, 0.12); }
+.exercise-card .emoji { font-size: 1.8rem; }
+.exercise-card .info { flex: 1; }
+.exercise-card .info .name { font-weight: 600; color: #2b2622; font-size: 11.5pt; }
+.exercise-card .info .hint { font-size: 9pt; color: #8a8273; }
+
+.modal-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.5);
+  backdrop-filter: blur(4px);
+  justify-content: center;
+  align-items: center;
+  z-index: 2000;
+}
+.modal-overlay.open { display: flex; }
+.modal-box {
+  background: white;
+  max-width: 600px;
+  width: 92%;
+  padding: 2.2rem 2rem;
+  border-radius: 16px;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+  animation: slideUp 0.25s ease;
+  position: relative;
+  max-height: 90vh;
+  overflow-y: auto;
+}
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(30px) scale(0.96); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+.modal-box .close-btn { position: absolute; top: 10px; right: 16px; font-size: 2rem; cursor: pointer; color: #a0aec0; background: none; border: none; line-height: 1; }
+.modal-box .close-btn:hover { color: #2d3748; }
+.modal-box .modal-video { width: 100%; border-radius: 12px; background: #1a1a2e; margin-bottom: 12px; max-height: 280px; object-fit: cover; }
+.modal-box h3 { font-size: 1.5rem; color: #0b2b4a; margin-bottom: 0.3rem; text-align: center; }
+.modal-box .modal-desc { color: #2d3748; font-size: 11.5pt; line-height: 1.6; margin: 0.5rem 0; }
+.modal-box .modal-reps { background: #f4f6f0; padding: 0.7rem 1rem; border-radius: 8px; font-weight: 600; color: #2d5a3d; font-size: 10.5pt; border-left: 3px solid #2d5a3d; }
+
+.bristol-chart { width: 100%; max-width: 550px; margin: 0 auto; background: #faf6f0; border-radius: 12px; padding: 12px; border: 1px solid #e2dcd0; }
+.bristol-row { display: flex; align-items: center; gap: 8px; padding: 4px 6px; border-bottom: 1px solid #f0ebe0; font-size: 10.5pt; }
+.bristol-row:last-child { border-bottom: none; }
+.bristol-row .type { font-weight: 600; color: #6b2a48; width: 50px; flex-shrink: 0; font-size: 9.5pt; }
+.bristol-row .icon { width: 50px; flex-shrink: 0; text-align: center; display: flex; align-items: center; justify-content: center; }
+.bristol-row .icon img { width: 40px; height: auto; display: block; border-radius: 4px; }
+.bristol-row .desc { color: #3a342c; flex: 1; font-size: 10pt; }
+.bristol-row .status { font-size: 8.5pt; font-weight: bold; text-transform: uppercase; padding: 2px 8px; border-radius: 12px; flex-shrink: 0; }
+.status.constipation { background: #f9e4e0; color: #8c3a2a; }
+.status.normal { background: #e4f0e0; color: #2d5a3d; }
+.status.diarrhea { background: #fdf1ea; color: #a4502c; }
+
+.search-container {
+  position: fixed;
+  top: 12px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1002;
+  width: 92%;
+  max-width: 600px;
+  display: flex;
+  gap: 6px;
+  background: white;
+  padding: 8px 12px 8px 18px;
+  border-radius: 40px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.12);
+  border: 1px solid #e2dcd0;
+  transition: box-shadow 0.2s, border-color 0.2s;
+  font-family: 'DejaVu Sans', sans-serif;
+}
+.search-container:focus-within { box-shadow: 0 4px 28px rgba(45, 90, 61, 0.20); border-color: #2d5a3d; }
+.search-container input { flex: 1; border: none; outline: none; font-size: 12pt; padding: 10px 0; background: transparent; color: #2b2622; font-family: 'DejaVu Sans', sans-serif; }
+.search-container input::placeholder { color: #b3aa99; font-weight: 300; }
+.search-container .search-icon { font-size: 1.2rem; color: #b3aa99; display: flex; align-items: center; padding-right: 4px; }
+.search-container .search-clear { background: none; border: none; font-size: 1.4rem; color: #b3aa99; cursor: pointer; padding: 0 4px; display: none; align-items: center; }
+.search-container .search-clear.show { display: flex; }
+.search-container .search-clear:hover { color: #2b2622; }
+.search-results {
+  position: fixed;
+  top: 72px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 92%;
+  max-width: 600px;
+  max-height: 60vh;
+  overflow-y: auto;
+  background: white;
+  border-radius: 16px;
+  box-shadow: 0 8px 40px rgba(0,0,0,0.15);
+  border: 1px solid #e2dcd0;
+  z-index: 1002;
+  padding: 8px 0;
+  display: none;
+}
+.search-results.show { display: block; }
+.search-results .result-item { padding: 12px 18px; cursor: pointer; border-bottom: 1px solid #f4f0ea; transition: background 0.15s; font-size: 11pt; line-height: 1.45; color: #2b2622; }
+.search-results .result-item:last-child { border-bottom: none; }
+.search-results .result-item:hover { background: #faf6f0; }
+.search-results .result-item .match-title { font-weight: 600; color: #2d5a3d; font-size: 11pt; margin-bottom: 2px; }
+.search-results .result-item .match-snippet { color: #6b6357; font-size: 10pt; }
+.search-results .result-item .match-snippet mark { background: #f5e3b3; padding: 0 2px; border-radius: 2px; color: #2b2622; }
+.search-results .result-item .match-section { font-size: 8.5pt; color: #b3aa99; text-transform: uppercase; letter-spacing: 0.5px; margin-top: 2px; }
+.search-results .no-results { padding: 24px 16px; text-align: center; color: #b3aa99; font-size: 11pt; }
+
+.sidebar {
+  position: fixed;
+  top: 0;
+  left: -320px;
+  width: 300px;
+  height: 100vh;
+  background: #ffffff;
+  border-right: 1px solid #e9edf4;
+  padding: 1.8rem 1.2rem;
+  overflow-y: auto;
+  z-index: 1000;
+  transition: left 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 4px 0 20px rgba(0,0,0,0.08);
+  font-family: 'DejaVu Sans', sans-serif;
+}
+.sidebar.open { left: 0; }
+.sidebar .brand { font-size: 1.2rem; font-weight: 700; color: #0b2b4a; margin-bottom: 0.25rem; display: flex; align-items: center; gap: 8px; }
+.sidebar .brand span { color: #2d5a3d; }
+.sidebar .sub { font-size: 0.9rem; color: #6b7a8f; margin-bottom: 1.5rem; padding-bottom: 0.75rem; border-bottom: 1px solid #eef2f7; }
+.sidebar nav a { display: block; padding: 0.6rem 0.7rem; margin-bottom: 0.15rem; border-radius: 6px; color: #2c3e50; text-decoration: none; font-size: 1rem; font-weight: 500; transition: all 0.2s; cursor: pointer; }
+.sidebar nav a:hover { background: #eef4ff; color: #2d5a3d; }
+.sidebar nav a.active { background: #2d5a3d; color: white; }
+.sidebar .close-sidebar { position: absolute; top: 12px; right: 16px; background: none; border: none; font-size: 1.8rem; cursor: pointer; color: #a0aec0; }
+.sidebar .close-sidebar:hover { color: #2d3748; }
+.overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.3); z-index: 999; }
+.overlay.show { display: block; }
+
+.menu-toggle {
+  display: none;
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 1001;
+  background: #2d5a3d;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  font-size: 28px;
+  cursor: pointer;
+  box-shadow: 0 4px 16px rgba(45, 90, 61, 0.4);
+  transition: transform 0.2s;
+}
+.menu-toggle:hover { transform: scale(1.05); }
+
+@media (max-width: 768px) {
+  .menu-toggle { display: block; width: 56px; height: 56px; font-size: 24px; }
+  .page { width: 100%; min-height: 100vh; }
+  .cover-content { padding: 20mm 16mm 0 16mm; }
+  .cover-title { font-size: 30pt; }
+  .cover-subtitle { font-size: 13pt; }
+  .content-page { padding: 16mm 14mm 20mm 14mm; }
+  .stat-grid { flex-direction: column; }
+  .sidebar { width: 280px; left: -300px; }
+  .page-footer { font-size: 7pt; }
+  .search-container { top: 8px; padding: 4px 8px 4px 14px; }
+  .search-container input { font-size: 10.5pt; padding: 8px 0; }
+  .search-results { top: 60px; max-height: 55vh; }
+  body { font-size: 11pt; }
+  .exercise-card .info .name { font-size: 10.5pt; }
+  .modal-box h3 { font-size: 1.2rem; }
+  .modal-box .modal-desc { font-size: 10.5pt; }
+  .modal-box .modal-video { max-height: 200px; }
+  h1.page-title { font-size: 20pt; }
+  .about-photos { flex-direction: column; align-items: center; }
+  .about-photo { max-width: 60mm; }
+  .bristol-row { font-size: 9pt; flex-wrap: wrap; gap: 4px; }
+  .bristol-row .type { width: 40px; font-size: 8pt; }
+  .bristol-row .icon { width: 40px; }
+  .bristol-row .icon img { width: 32px; }
+  .bristol-row .desc { font-size: 8.5pt; }
+  .bristol-row .status { font-size: 7pt; padding: 1px 6px; }
+}
+@media print {
+  .sidebar, .menu-toggle, .overlay, .modal-overlay, .search-container, .search-results { display: none !important; }
+  .page { margin: 0; box-shadow: none; }
+}
+</style>
 </head>
 <body>
-<div class="container" id="app">
-    <h1>🚽 Профилактика запоров после родов</h1>
-    <div class="sub">Правильная техника, питание, массаж и Бристольская шкала</div>
 
-    <!-- БРИСТОЛЬСКАЯ ШКАЛА -->
-    <div class="section">
-        <h2>📊 Бристольская шкала кала</h2>
-        <div class="bristol-chart">
-            <div class="bristol-row"><span class="type">Тип 1</span><span class="icon">⚫</span><span class="desc">Отдельные твёрдые комочки</span><span class="status constipation">ЗАПОР</span></div>
-            <div class="bristol-row"><span class="type">Тип 2</span><span class="icon">🔴</span><span class="desc">Колбасовидный, но комковатый</span><span class="status constipation">ЗАПОР</span></div>
-            <div class="bristol-row"><span class="type">Тип 3</span><span class="icon">🟠</span><span class="desc">Колбасовидный, с трещинами</span><span class="status normal">НОРМА</span></div>
-            <div class="bristol-row"><span class="type">Тип 4</span><span class="icon">🟢</span><span class="desc">Гладкий, змеевидный</span><span class="status normal">НОРМА</span></div>
-            <div class="bristol-row"><span class="type">Тип 5</span><span class="icon">🔵</span><span class="desc">Мягкие шарики</span><span class="status normal">НОРМА</span></div>
-            <div class="bristol-row"><span class="type">Тип 6</span><span class="icon">🟣</span><span class="desc">Кашицеобразный</span><span class="status diarrhea">ДИАРЕЯ</span></div>
-            <div class="bristol-row"><span class="type">Тип 7</span><span class="icon">💧</span><span class="desc">Водянистый</span><span class="status diarrhea">ДИАРЕЯ</span></div>
-        </div>
-        <div style="background:#f4f6f0; padding:10px 14px; border-radius:8px; text-align:center;">
-            <strong>Цель:</strong> стремитесь к <span style="color:#2d5a3d; font-weight:700;">Типу 3 или 4</span>
-        </div>
+<!-- ПОИСК -->
+<div class="search-container" id="searchContainer">
+  <span class="search-icon">🔍</span>
+  <input type="text" id="searchInput" placeholder="Поиск по памятке..." autocomplete="off">
+  <button class="search-clear" id="searchClear">✕</button>
+</div>
+<div class="search-results" id="searchResults"></div>
+
+<!-- КНОПКА МЕНЮ -->
+<button class="menu-toggle" id="menuToggle" aria-label="Открыть меню">☰</button>
+<div class="overlay" id="overlay"></div>
+
+<!-- САЙДБАР -->
+<aside class="sidebar" id="sidebar">
+  <button class="close-sidebar" id="closeSidebar">✕</button>
+  <div class="brand">🚽 <span>Памятка</span> по запорам</div>
+  <div class="sub">Послеродовой период</div>
+  <nav id="navMenu">
+    <a href="#cover">Обложка</a>
+    <a href="#about">Об авторе</a>
+    <a href="#toc">Содержание</a>
+    <a href="#intro">Введение</a>
+    <a href="#bristol">Бристольская шкала</a>
+    <a href="#toilet">Как правильно ходить в туалет</a>
+    <a href="#squatty">Squatty Potty</a>
+    <a href="#nutrition">Питание от запоров</a>
+    <a href="#massage">Массаж живота</a>
+    <a href="#redflags">Красные флаги</a>
+  </nav>
+</aside>
+
+<!-- ============ ОБЛОЖКА ============ -->
+<div class="page cover" id="cover">
+  <div class="band-top"></div>
+  <div class="band-bottom"></div>
+  <div class="cover-tags"><span class="cover-pill">Послеродовой период</span></div>
+  <div class="cover-content">
+    <div class="cover-eyebrow">Памятка</div>
+    <div class="cover-title">Профилактика и коррекция<br><em>запоров</em><br>после родов</div>
+    <div class="cover-divider"></div>
+    <div class="cover-subtitle">
+      Как правильно ходить в туалет, использовать Squatty Potty, не тужиться,
+      а также рекомендации по питанию и массажу живота для мягкого и комфортного стула.
     </div>
-
-    <!-- ТЕХНИКА -->
-    <div class="section">
-        <h2>🚽 Как правильно ходить в туалет</h2>
-        <div class="goal-box">
-            <span class="goal-label">Главное правило</span>
-            <strong>Не тужиться!</strong> Вместо этого используйте технику «дыхания на выдохе».
-        </div>
-        <div class="exercise-card" data-exercise="breath-push">
-            <div class="emoji">🌬️</div>
-            <div class="info"><div class="name">Техника «дыхания на выдохе»</div><div class="hint">нажмите для техники</div></div>
-        </div>
-        <div class="exercise-card" data-exercise="pelvic-floor-relax">
-            <div class="emoji">🧘</div>
-            <div class="info"><div class="name">Расслабление тазового дна</div><div class="hint">нажмите для техники</div></div>
-        </div>
-        <div class="flags-box">
-            <div class="title">⚠️ Чего делать НЕЛЬЗЯ:</div>
-            <ul>
-                <li>❌ Натуживаться («тужиться»)</li>
-                <li>❌ Задерживать дыхание на выдохе</li>
-                <li>❌ Сидеть на унитазе дольше 5–7 минут</li>
-                <li>❌ Игнорировать позывы к дефекации</li>
-            </ul>
-        </div>
+    <div class="cover-meta">
+      <div><strong>Основано на:</strong> клинических рекомендациях WHO, NICE, ACOG</div>
+      <div><strong>Для кого:</strong> женщины в послеродовом периоде</div>
+      <div><strong>Формат:</strong> практическое руководство с упражнениями и красными флагами</div>
     </div>
-
-    <!-- SQUATTY POTTY -->
-    <div class="section">
-        <h2>🪑 Squatty Potty</h2>
-        <p>Подставка для ног помогает принять естественную позу «на корточках».</p>
-        <div class="exercise-card" data-exercise="squatty-usage">
-            <div class="emoji">🪑</div>
-            <div class="info"><div class="name">Как использовать Squatty Potty</div><div class="hint">нажмите для техники</div></div>
-        </div>
-        <div style="background:#faf6f0; border-radius:8px; padding:12px; margin-top:8px; border-left:3px solid #2d5a3d;">
-            <strong>💡 Совет:</strong> используйте скамейку, стопку книг или перевёрнутый ящик — главное, чтобы колени были выше бёдер.
-        </div>
-    </div>
-
-    <!-- ПИТАНИЕ -->
-    <div class="section">
-        <h2>🍎 Питание от запоров</h2>
-        <div style="display:flex; flex-wrap:wrap; gap:8px; margin-bottom:12px;">
-            <div style="flex:1; min-width:100px; background:#f4f6f0; border-radius:8px; padding:10px; text-align:center; border-top:3px solid #2d5a3d;">
-                <div style="font-size:20pt;">💧</div>
-                <div style="font-weight:bold;">Вода</div>
-                <div style="font-size:9pt; color:#6b6357;">1,5–2 л в день</div>
-            </div>
-            <div style="flex:1; min-width:100px; background:#f4f6f0; border-radius:8px; padding:10px; text-align:center; border-top:3px solid #8b3a5e;">
-                <div style="font-size:20pt;">🥗</div>
-                <div style="font-weight:bold;">Клетчатка</div>
-                <div style="font-size:9pt; color:#6b6357;">овощи, фрукты, цельнозерновые</div>
-            </div>
-            <div style="flex:1; min-width:100px; background:#f4f6f0; border-radius:8px; padding:10px; text-align:center; border-top:3px solid #6b2a48;">
-                <div style="font-size:20pt;">🫘</div>
-                <div style="font-weight:bold;">Кисломолочные</div>
-                <div style="font-size:9pt; color:#6b6357;">кефир, йогурт</div>
-            </div>
-        </div>
-        <div class="exercise-card" data-exercise="nutrition-tips">
-            <div class="emoji">🍎</div>
-            <div class="info"><div class="name">Продукты, которые помогают</div><div class="hint">нажмите для списка</div></div>
-        </div>
-        <div class="exercise-card" data-exercise="nutrition-avoid">
-            <div class="emoji">🚫</div>
-            <div class="info"><div class="name">Продукты, которые усиливают запор</div><div class="hint">нажмите для списка</div></div>
-        </div>
-    </div>
-
-    <!-- МАССАЖ -->
-    <div class="section">
-        <h2>🤚 Массаж живота</h2>
-        <p>Делайте <strong>каждое утро на голодный желудок</strong> по 5–7 минут.</p>
-        <div class="exercise-card" data-exercise="belly-massage">
-            <div class="emoji">🤚</div>
-            <div class="info"><div class="name">Техника массажа живота</div><div class="hint">нажмите для техники</div></div>
-        </div>
-        <div style="background:#fdf1ea; border-radius:8px; padding:12px; border-left:3px solid #6b2a48; margin-top:8px;">
-            <strong>⚠️ Противопоказания:</strong> не делайте массаж при болях в животе, температуре или после недавней операции.
-        </div>
-    </div>
-
-    <!-- КРАСНЫЕ ФЛАГИ -->
-    <div class="section">
-        <h2>🚨 Красные флаги</h2>
-        <div style="background:#f9e4e0; border-radius:8px; padding:16px; border-left:4px solid #8c3a2a;">
-            <div style="font-weight:bold; color:#8c3a2a; font-size:11.5pt;">НЕМЕДЛЕННО ОБРАТИТЕСЬ К ВРАЧУ, ЕСЛИ:</div>
-            <ul style="padding-left:20px; margin-top:6px;">
-                <li>Запор длится более 3–4 дней без результата</li>
-                <li>Сильная боль в животе, которая не проходит</li>
-                <li>Кровь в кале (алая или тёмная)</li>
-                <li>Тошнота, рвота, повышение температуры</li>
-                <li>Отсутствие стула в сочетании с вздутием и задержкой газов</li>
-            </ul>
-        </div>
-    </div>
-
-    <a href="index.html" class="btn-back">← На главную</a>
-    <div class="footer">© Кузменькова Елена · @lena.galanova</div>
+  </div>
+  <div class="cover-disclaimer">
+    Документ является общим ориентиром и не заменяет консультацию врача.
+    Индивидуальные рекомендации могут отличаться. Перед началом любых действий
+    — и при появлении тревожных симптомов — обратитесь к специалисту.
+  </div>
 </div>
 
-<!-- МОДАЛЬНОЕ ОКНО -->
+<!-- ============ ОБ АВТОРЕ ============ -->
+<div class="page about-page" id="about">
+  <div class="about-photos">
+    <div class="about-photo"><img src="photo1.jpg" alt="Фото" onerror="this.style.display='none'; this.parentElement.innerHTML='📸'"></div>
+    <div class="about-photo"><img src="photo2.jpg" alt="Фото" onerror="this.style.display='none'; this.parentElement.innerHTML='📸'"></div>
+  </div>
+  <div class="about-text">
+    <p><strong>Всем привет!</strong> Меня зовут <strong>Кузменькова Елена</strong>.</p>
+    <p>Я фитнес-тренер, инструктор ЛФК, акушерка и мама. Полгода назад у меня появился сын путем кесарева сечения, и мне очень хотелось собрать всю основную информацию о восстановлении в одном месте. Запоры после родов — одна из самых частых и неприятных проблем, и этот гайд поможет с ней справиться мягко и безопасно.</p>
+  </div>
+  <div class="about-contacts">
+    📸 <strong>Instagram:</strong> <a href="https://instagram.com/lena.galanova" target="_blank">@lena.galanova</a><br>
+    ✉️ <strong>Email:</strong> <a href="mailto:lena_galanova@bk.ru">lena_galanova@bk.ru</a>
+  </div>
+  <div class="page-footer"><span>Об авторе</span><span>Елена Кузменькова</span></div>
+</div>
+
+<!-- ============ ОГЛАВЛЕНИЕ ============ -->
+<div class="page toc-page" id="toc">
+  <div class="toc-header">
+    <div class="toc-eyebrow">Содержание</div>
+    <div class="toc-title">Структура руководства</div>
+    <div class="toc-rule"></div>
+  </div>
+  <div class="toc-part-label">Введение</div>
+  <div class="toc-item"><span class="toc-num">·</span><span class="toc-name">Как пользоваться этой памяткой</span><span class="toc-fill"></span><span class="toc-page-num">4</span></div>
+  <div class="toc-part-label">Основные разделы</div>
+  <div class="toc-item"><span class="toc-num">01</span><span class="toc-name">Бристольская шкала кала</span><span class="toc-fill"></span><span class="toc-page-num">5</span></div>
+  <div class="toc-item"><span class="toc-num">02</span><span class="toc-name">Как правильно ходить в туалет</span><span class="toc-fill"></span><span class="toc-page-num">6</span></div>
+  <div class="toc-item"><span class="toc-num">03</span><span class="toc-name">Squatty Potty — правильная поза</span><span class="toc-fill"></span><span class="toc-page-num">7</span></div>
+  <div class="toc-item"><span class="toc-num">04</span><span class="toc-name">Питание от запоров</span><span class="toc-fill"></span><span class="toc-page-num">8</span></div>
+  <div class="toc-item"><span class="toc-num">05</span><span class="toc-name">Массаж живота от запоров</span><span class="toc-fill"></span><span class="toc-page-num">9</span></div>
+  <div class="toc-part-label">В заключение</div>
+  <div class="toc-item"><span class="toc-num">·</span><span class="toc-name">Красные флаги</span><span class="toc-fill"></span><span class="toc-page-num">10</span></div>
+</div>
+
+<!-- ============ ВВЕДЕНИЕ ============ -->
+<div class="page content-page" id="intro">
+  <div class="section-kicker ink">Введение</div>
+  <h1 class="page-title">Как пользоваться этой памяткой</h1>
+  <div class="intro-text">
+    Запоры после родов — одна из самых частых проблем, с которой сталкиваются женщины. Гормональные изменения, ослабление мышц тазового дна, страх боли при натуживании, а также обезболивающие препараты — всё это может замедлить работу кишечника.
+  </div>
+  <div class="intro-text">
+    Эта памятка поможет вам:
+  </div>
+  <ul style="font-size:12pt; line-height:1.7; padding-left:6mm; color:#3a342c;">
+    <li>✔ Понять, какой стул считается нормальным (Бристольская шкала)</li>
+    <li>✔ Научиться правильно ходить в туалет, чтобы не травмировать промежность и швы</li>
+    <li>✔ Использовать Squatty Potty для правильной позы</li>
+    <li>✔ Скорректировать питание для мягкого стула</li>
+    <li>✔ Делать массаж живота для стимуляции перистальтики</li>
+  </ul>
+  <div class="callout">
+    <strong>Важное примечание.</strong> Запоры могут быть опасны в послеродовом периоде, особенно при наличии швов или геморроя. Не стесняйтесь обращаться к врачу при любых сомнениях.
+  </div>
+  <div class="page-footer"><span>Профилактика запоров</span><span>Введение</span></div>
+</div>
+
+<!-- ============ БРИСТОЛЬСКАЯ ШКАЛА ============ -->
+<div class="page content-page" id="bristol">
+  <div class="page-tab terracotta">Бристольская шкала</div>
+  <div class="section-kicker terracotta">Раздел 1</div>
+  <h1 class="page-title">Бристольская шкала кала</h1>
+  <div class="intro-text">
+    Бристольская шкала — это медицинский инструмент для оценки формы и консистенции стула. Она помогает понять, есть ли у вас запор, норма или диарея.
+  </div>
+
+  <div class="bristol-chart">
+    <div class="bristol-row"><span class="type">Тип 1</span><span class="icon"><img src="bristol-1.png" alt="Тип 1" onerror="this.parentElement.innerHTML='⚫'"></span><span class="desc">Отдельные твёрдые комочки, как орехи</span><span class="status constipation">ЗАПОР</span></div>
+    <div class="bristol-row"><span class="type">Тип 2</span><span class="icon"><img src="bristol-2.png" alt="Тип 2" onerror="this.parentElement.innerHTML='🔴'"></span><span class="desc">Колбасовидный, но комковатый</span><span class="status constipation">ЗАПОР</span></div>
+    <div class="bristol-row"><span class="type">Тип 3</span><span class="icon"><img src="bristol-3.png" alt="Тип 3" onerror="this.parentElement.innerHTML='🟠'"></span><span class="desc">Колбасовидный, с трещинами на поверхности</span><span class="status normal">НОРМА</span></div>
+    <div class="bristol-row"><span class="type">Тип 4</span><span class="icon"><img src="bristol-4.png" alt="Тип 4" onerror="this.parentElement.innerHTML='🟢'"></span><span class="desc">Колбасовидный или змеевидный, гладкий</span><span class="status normal">НОРМА</span></div>
+    <div class="bristol-row"><span class="type">Тип 5</span><span class="icon"><img src="bristol-5.png" alt="Тип 5" onerror="this.parentElement.innerHTML='🔵'"></span><span class="desc">Мягкие шарики с чёткими краями</span><span class="status normal">НОРМА</span></div>
+    <div class="bristol-row"><span class="type">Тип 6</span><span class="icon"><img src="bristol-6.png" alt="Тип 6" onerror="this.parentElement.innerHTML='🟣'"></span><span class="desc">Кашицеобразный, с рваными краями</span><span class="status diarrhea">ДИАРЕЯ</span></div>
+    <div class="bristol-row"><span class="type">Тип 7</span><span class="icon"><img src="bristol-7.png" alt="Тип 7" onerror="this.parentElement.innerHTML='💧'"></span><span class="desc">Водянистый, без твёрдых кусочков</span><span class="status diarrhea">ДИАРЕЯ</span></div>
+  </div>
+
+  <div class="callout" style="margin-top:6mm;">
+    <strong>Цель:</strong> стремитесь к <strong>Типу 3 или 4</strong> — это идеальная консистенция для комфортного и безопасного стула, особенно в послеродовом периоде.
+  </div>
+
+  <div class="page-footer"><span>Бристольская шкала</span><span>Оценка стула</span></div>
+</div>
+
+<!-- ============ КАК ПРАВИЛЬНО ХОДИТЬ В ТУАЛЕТ ============ -->
+<div class="page content-page" id="toilet">
+  <div class="page-tab terracotta">Правильная техника</div>
+  <div class="section-kicker terracotta">Раздел 2</div>
+  <h1 class="page-title">Как правильно ходить в туалет</h1>
+
+  <div class="goal-box" style="margin-bottom:6mm;">
+    <span class="goal-label">Главное правило</span>
+    <strong>Не тужиться!</strong> Натуживание создаёт давление на тазовое дно, промежность и швы. Вместо этого используйте технику «дыхания на выдохе».
+  </div>
+
+  <div class="exercise-card" data-exercise="breath-push">
+    <div class="emoji">🌬️</div>
+    <div class="info"><div class="name">Техника «дыхания на выдохе»</div><div class="hint">нажмите для техники</div></div>
+  </div>
+
+  <div class="exercise-card" data-exercise="pelvic-floor-relax">
+    <div class="emoji">🧘</div>
+    <div class="info"><div class="name">Расслабление тазового дна</div><div class="hint">нажмите для техники</div></div>
+  </div>
+
+  <div style="background:#f4f6f0; border-radius:8px; padding:4mm 5mm; margin-top:4mm;">
+    <strong>📋 Пошаговый алгоритм:</strong>
+    <ol style="font-size:11pt; line-height:1.7; padding-left:5mm;">
+      <li><strong>Сядьте</strong> на унитаз — не торопитесь.</li>
+      <li><strong>Ноги</strong> на полу (или на подставке — см. раздел о Squatty Potty).</li>
+      <li><strong>Сделайте вдох</strong> животом, затем выдох — и на выдохе <strong>мягко расслабьте</strong> мышцы тазового дна.</li>
+      <li><strong>Не задерживайте дыхание</strong> и не напрягайтесь.</li>
+      <li>Если стул не выходит — <strong>не давите</strong>. Встаньте, походите, выпейте воды — попробуйте позже.</li>
+    </ol>
+  </div>
+
+  <div class="flags-box" style="margin-top:5mm;">
+    <div class="flags-title">⚠️ Чего делать НЕЛЬЗЯ:</div>
+    <ul class="flags-list">
+      <li>❌ Натуживаться («тужиться»)</li>
+      <li>❌ Задерживать дыхание на выдохе</li>
+      <li>❌ Сидеть на унитазе дольше 5–7 минут</li>
+      <li>❌ Игнорировать позывы к дефекации</li>
+    </ul>
+  </div>
+
+  <div class="page-footer"><span>Техника дефекации</span><span>Как правильно ходить в туалет</span></div>
+</div>
+
+<!-- ============ SQUATTY POTTY ============ -->
+<div class="page content-page" id="squatty">
+  <div class="page-tab terracotta">Правильная поза</div>
+  <div class="section-kicker terracotta">Раздел 3</div>
+  <h1 class="page-title">Squatty Potty — правильная поза для дефекации</h1>
+
+  <div class="intro-text">
+    Squatty Potty — это небольшая подставка для ног, которая помогает принять естественную позу «на корточках». В таком положении прямая кишка выпрямляется, и стул выходит легче, без натуживания.
+  </div>
+
+  <div class="exercise-card" data-exercise="squatty-usage">
+    <div class="emoji">🪑</div>
+    <div class="info"><div class="name">Как использовать Squatty Potty</div><div class="hint">нажмите для техники</div></div>
+  </div>
+
+  <div style="background:#faf6f0; border-radius:8px; padding:4mm 5mm; margin-top:4mm; border-left:3pt solid #2d5a3d;">
+    <strong>💡 Совет:</strong>
+    <p style="font-size:11pt; line-height:1.6; margin:2mm 0 0 0;">Если у вас нет специальной подставки, используйте <strong>небольшую скамейку, стопку книг или перевёрнутый ящик</strong>. Главное — чтобы колени были выше бёдер.</p>
+  </div>
+
+  <div class="callout" style="margin-top:5mm;">
+    <strong>Почему это работает:</strong> В такой позе снижается давление на промежность, швы и геморроидальные узлы, а кишечник опорожняется мягко и естественно.
+  </div>
+
+  <div class="page-footer"><span>Squatty Potty</span><span>Правильная поза</span></div>
+</div>
+
+<!-- ============ ПИТАНИЕ ============ -->
+<div class="page content-page" id="nutrition">
+  <div class="page-tab terracotta">Питание</div>
+  <div class="section-kicker terracotta">Раздел 4</div>
+  <h1 class="page-title">Питание от запоров</h1>
+
+  <div class="intro-text">
+    Правильное питание — основа мягкого стула. Вот что должно быть в вашем рационе ежедневно.
+  </div>
+
+  <div style="display:flex; flex-wrap:wrap; gap:4mm; margin:4mm 0 5mm 0;">
+    <div style="flex:1; min-width:120px; background:#f4f6f0; border-radius:8px; padding:4mm 5mm; border-top:3pt solid #2d5a3d;">
+      <div style="font-size:20pt; text-align:center;">💧</div>
+      <div style="font-weight:bold; text-align:center; font-size:10.5pt;">Вода</div>
+      <div style="font-size:9.5pt; text-align:center; color:#6b6357;">1,5–2 л в день</div>
+    </div>
+    <div style="flex:1; min-width:120px; background:#f4f6f0; border-radius:8px; padding:4mm 5mm; border-top:3pt solid #8b3a5e;">
+      <div style="font-size:20pt; text-align:center;">🥗</div>
+      <div style="font-weight:bold; text-align:center; font-size:10.5pt;">Клетчатка</div>
+      <div style="font-size:9.5pt; text-align:center; color:#6b6357;">овощи, фрукты, цельнозерновые</div>
+    </div>
+    <div style="flex:1; min-width:120px; background:#f4f6f0; border-radius:8px; padding:4mm 5mm; border-top:3pt solid #6b2a48;">
+      <div style="font-size:20pt; text-align:center;">🫘</div>
+      <div style="font-weight:bold; text-align:center; font-size:10.5pt;">Кисломолочные</div>
+      <div style="font-size:9.5pt; text-align:center; color:#6b6357;">кефир, йогурт (живые культуры)</div>
+    </div>
+    <div style="flex:1; min-width:120px; background:#f4f6f0; border-radius:8px; padding:4mm 5mm; border-top:3pt solid #2d5a3d;">
+      <div style="font-size:20pt; text-align:center;">🌿</div>
+      <div style="font-weight:bold; text-align:center; font-size:10.5pt;">Масла</div>
+      <div style="font-size:9.5pt; text-align:center; color:#6b6357;">оливковое, льняное (1–2 ч.л.)</div>
+    </div>
+  </div>
+
+  <div class="exercise-card" data-exercise="nutrition-tips">
+    <div class="emoji">🍎</div>
+    <div class="info"><div class="name">Продукты, которые помогают</div><div class="hint">нажмите для списка</div></div>
+  </div>
+
+  <div class="exercise-card" data-exercise="nutrition-avoid">
+    <div class="emoji">🚫</div>
+    <div class="info"><div class="name">Продукты, которые усиливают запор</div><div class="hint">нажмите для списка</div></div>
+  </div>
+
+  <div class="page-footer"><span>Питание</span><span>Рекомендации от запоров</span></div>
+</div>
+
+<!-- ============ МАССАЖ ЖИВОТА ============ -->
+<div class="page content-page" id="massage">
+  <div class="page-tab terracotta">Массаж</div>
+  <div class="section-kicker terracotta">Раздел 5</div>
+  <h1 class="page-title">Массаж живота от запоров</h1>
+
+  <div class="intro-text">
+    Массаж живота стимулирует перистальтику и помогает кишечнику «проснуться». Делайте его <strong>каждое утро на голодный желудок</strong> — перед завтраком.
+  </div>
+
+  <div style="background:#1a1a2e; border-radius:12px; overflow:hidden; margin:12px 0 16px 0; position:relative;">
+    <video autoplay muted loop playsinline style="display:block; width:100%; height:auto; max-height:300px; object-fit:cover;">
+      <source src="belly-massage.mp4" type="video/mp4">
+      Ваш браузер не поддерживает видео.
+    </video>
+    <div style="position:absolute; bottom:8px; left:12px; background:rgba(0,0,0,0.6); color:#ffffff; font-size:8.5pt; padding:2px 10px; border-radius:12px; font-weight:300; letter-spacing:0.5px; backdrop-filter:blur(4px);">🎬 Массаж живота от запоров</div>
+  </div>
+
+  <div class="exercise-card" data-exercise="belly-massage">
+    <div class="emoji">🤚</div>
+    <div class="info"><div class="name">Техника массажа живота</div><div class="hint">нажмите для подробной техники</div></div>
+  </div>
+
+  <div style="background:#fdf1ea; border-radius:8px; padding:4mm 5mm; margin-top:4mm; border-left:3pt solid #6b2a48;">
+    <strong>⏰ Когда делать:</strong>
+    <p style="font-size:11pt; line-height:1.6; margin:2mm 0 0 0;">Каждое утро, <strong>до завтрака</strong>, лёжа на спине. Длительность: 5–7 минут. Движения — мягкие, по часовой стрелке.</p>
+  </div>
+
+  <div class="callout sage" style="margin-top:4mm;">
+    <strong>Противопоказания:</strong> не делайте массаж при болях в животе, температуре, вздутии с сильным дискомфортом или после недавней операции на брюшной полости (при кесаревом — только после разрешения врача и заживления шва).
+  </div>
+
+  <div class="page-footer"><span>Массаж живота</span><span>Стимуляция перистальтики</span></div>
+</div>
+
+<!-- ============ КРАСНЫЕ ФЛАГИ ============ -->
+<div class="page content-page" id="redflags">
+  <div class="section-kicker ink">В заключение</div>
+  <h1 class="page-title">Красные флаги</h1>
+
+  <div class="intro-text">
+    В большинстве случаев запоры после родов проходят с коррекцией питания и образа жизни. Но есть симптомы, при которых нужно <strong>немедленно обратиться к врачу</strong>.
+  </div>
+
+  <div style="background:#f9e4e0; border-radius:8px; padding:5mm 6mm; margin:4mm 0; border-left:4pt solid #8c3a2a;">
+    <div style="font-weight:bold; color:#8c3a2a; font-size:11.5pt;">🚨 НЕМЕДЛЕННО ОБРАТИТЕСЬ К ВРАЧУ, ЕСЛИ:</div>
+    <ul style="font-size:11pt; line-height:1.7; padding-left:5mm; color:#5a4030; margin-top:2mm;">
+      <li>Запор длится более 3–4 дней без результата</li>
+      <li>Сильная боль в животе, которая не проходит</li>
+      <li>Кровь в кале (алая или тёмная)</li>
+      <li>Тошнота, рвота, повышение температуры</li>
+      <li>Отсутствие стула в сочетании с вздутием и задержкой газов</li>
+    </ul>
+  </div>
+
+  <div class="callout">
+    <strong>Важно!</strong> Не стесняйтесь обратиться к врачу. Своевременная помощь поможет избежать осложнений, особенно при наличии геморроя, швов или кесарева сечения.
+  </div>
+
+  <div class="page-footer"><span>Красные флаги</span><span>Когда нужен врач</span></div>
+</div>
+
+<!-- ============ МОДАЛЬНОЕ ОКНО ============ -->
 <div class="modal-overlay" id="modalOverlay">
-    <div class="modal-box">
-        <button class="close-btn" id="modalClose">✕</button>
-        <video class="modal-video" id="modalVideo" autoplay muted playsinline loop>
-            <source src="" type="video/mp4">
-        </video>
-        <h3 id="modalTitle">Название</h3>
-        <div class="modal-desc" id="modalDesc">Описание</div>
-        <div class="modal-reps" id="modalReps">Повторения</div>
-    </div>
+  <div class="modal-box">
+    <button class="close-btn" id="modalClose">✕</button>
+    <video class="modal-video" id="modalVideo" autoplay muted playsinline loop>
+      <source src="" type="video/mp4">
+    </video>
+    <h3 id="modalTitle">Название</h3>
+    <div class="modal-desc" id="modalDesc">Описание</div>
+    <div class="modal-reps" id="modalReps">Дополнительная информация</div>
+  </div>
 </div>
 
+<!-- ============ JAVASCRIPT ============ -->
 <script>
-    const EXERCISE_DATA = {
-        'breath-push': {
-            title: '🌬️ Техника «дыхания на выдохе»',
-            video: 'breath-push.mp4',
-            desc: 'Сядьте на унитаз. Сделайте глубокий вдох животом. На медленном выдохе мягко расслабьте мышцы тазового дна. Не задерживайте дыхание!',
-            reps: 'Повторяйте 2–3 цикла'
-        },
-        'pelvic-floor-relax': {
-            title: '🧘 Расслабление тазового дна',
-            video: 'pelvic-floor-relax.mp4',
-            desc: 'Представьте, что вы «отпускаете» мышцы тазового дна, как будто они становятся мягкими и тяжёлыми.',
-            reps: 'Делайте в начале каждого посещения туалета'
-        },
-        'squatty-usage': {
-            title: '🪑 Как использовать Squatty Potty',
-            video: 'squatty-usage.mp4',
-            desc: 'Поставьте подставку перед унитазом. Сядьте так, чтобы колени оказались выше бёдер.',
-            reps: 'Используйте каждый раз при посещении туалета'
-        },
-        'nutrition-tips': {
-            title: '🍎 Продукты, которые помогают',
-            video: 'nutrition-tips.mp4',
-            desc: 'Чернослив, киви, яблоки с кожурой, отруби, овсянка, свекла, тыква, семена льна, кисломолочные продукты, оливковое масло.',
-            reps: 'Добавляйте в ежедневный рацион'
-        },
-        'nutrition-avoid': {
-            title: '🚫 Продукты, которые усиливают запор',
-            video: 'nutrition-avoid.mp4',
-            desc: 'Белый хлеб, сдоба, рис, макароны из мягких сортов, бананы, гранаты, кисель, крепкий чай, кофе, шоколад, жирное мясо.',
-            reps: 'Ограничьте в послеродовом периоде'
-        },
-        'belly-massage': {
-            title: '🤚 Техника массажа живота',
-            video: 'belly-massage.mp4',
-            desc: 'Лягте на спину, согните колени. Делайте мягкие круговые движения по часовой стрелке (по ходу толстой кишки).',
-            reps: '5–7 минут каждое утро на голодный желудок'
-        }
-    };
-
-    const modalOverlay = document.getElementById('modalOverlay');
-    const modalClose = document.getElementById('modalClose');
-    const modalVideo = document.getElementById('modalVideo');
-    const modalTitle = document.getElementById('modalTitle');
-    const modalDesc = document.getElementById('modalDesc');
-    const modalReps = document.getElementById('modalReps');
-
-    function openModal(key) {
-        const data = EXERCISE_DATA[key];
-        if (!data) return;
-        modalTitle.textContent = data.title;
-        modalDesc.textContent = data.desc;
-        modalReps.textContent = data.reps;
-        modalVideo.src = data.video || '';
-        modalVideo.load();
-        modalVideo.play().catch(() => {});
-        modalOverlay.classList.add('open');
-        document.body.style.overflow = 'hidden';
+(function() {
+  const EXERCISE_DATA = {
+    'breath-push': {
+      title: '🌬️ Техника «дыхания на выдохе»',
+      video: 'breath-push.mp4',
+      desc: 'Сядьте на унитаз, ноги на полу. Сделайте глубокий вдох животом. На медленном выдохе мягко расслабьте мышцы тазового дна. Не задерживайте дыхание! Это помогает снизить давление на промежность и швы.',
+      reps: 'Повторяйте 2–3 цикла, если стул не выходит — встаньте и попробуйте позже'
+    },
+    'pelvic-floor-relax': {
+      title: '🧘 Расслабление тазового дна',
+      video: 'pelvic-floor-relax.mp4',
+      desc: 'Представьте, что вы «отпускаете» мышцы тазового дна, как будто они становятся мягкими и тяжёлыми. Это помогает снять напряжение и подготовить тело к мягкому опорожнению.',
+      reps: 'Делайте в начале каждого посещения туалета'
+    },
+    'squatty-usage': {
+      title: '🪑 Как использовать Squatty Potty',
+      video: 'squatty-usage.mp4',
+      desc: 'Поставьте подставку перед унитазом. Сядьте так, чтобы колени оказались выше бёдер. Это выпрямляет прямую кишку и позволяет калу выходить без натуживания.',
+      reps: 'Используйте каждый раз при посещении туалета'
+    },
+    'nutrition-tips': {
+      title: '🍎 Продукты, которые помогают',
+      video: 'nutrition-tips.mp4',
+      desc: 'Чернослив (2–3 шт.), киви, яблоки с кожурой, отруби, овсянка, свекла, тыква, семена льна, кисломолочные продукты с живыми культурами, оливковое масло.',
+      reps: 'Добавляйте в ежедневный рацион постепенно'
+    },
+    'nutrition-avoid': {
+      title: '🚫 Продукты, которые усиливают запор',
+      video: 'nutrition-avoid.mp4',
+      desc: 'Белый хлеб, сдоба, рис, макароны из мягких сортов, бананы, гранаты, кисель, крепкий чай, кофе, шоколад, жирное мясо, фастфуд.',
+      reps: 'Ограничьте их в послеродовом периоде'
+    },
+    'belly-massage': {
+      title: '🤚 Техника массажа живота',
+      video: 'belly-massage.mp4',
+      desc: 'Лягте на спину, согните колени. Положите ладонь на живот вокруг пупка. Делайте мягкие круговые движения по часовой стрелке (по ходу толстой кишки). Начинайте с правой подвздошной области, затем вверх, влево и вниз. Движения — без надавливания, только поверхностные.',
+      reps: '5–7 минут каждое утро на голодный желудок'
     }
+  };
 
-    function closeModal() {
-        modalOverlay.classList.remove('open');
-        document.body.style.overflow = '';
-        modalVideo.pause();
-        modalVideo.currentTime = 0;
+  const modalOverlay = document.getElementById('modalOverlay');
+  const modalClose = document.getElementById('modalClose');
+  const modalVideo = document.getElementById('modalVideo');
+  const modalTitle = document.getElementById('modalTitle');
+  const modalDesc = document.getElementById('modalDesc');
+  const modalReps = document.getElementById('modalReps');
+
+  function openModal(key) {
+    const data = EXERCISE_DATA[key];
+    if (!data) return;
+    modalTitle.textContent = data.title;
+    modalDesc.textContent = data.desc;
+    modalReps.textContent = data.reps;
+    modalVideo.src = data.video || '';
+    modalVideo.load();
+    modalVideo.play().catch(() => {});
+    modalOverlay.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeModal() {
+    modalOverlay.classList.remove('open');
+    document.body.style.overflow = '';
+    modalVideo.pause();
+    modalVideo.currentTime = 0;
+  }
+
+  document.querySelectorAll('.exercise-card').forEach(card => {
+    card.addEventListener('click', function() {
+      const key = this.dataset.exercise;
+      if (key) openModal(key);
+    });
+  });
+
+  modalClose.addEventListener('click', closeModal);
+  modalOverlay.addEventListener('click', e => { if (e.target === modalOverlay) closeModal(); });
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+
+  // САЙДБАР
+  const sidebar = document.getElementById('sidebar');
+  const overlay = document.getElementById('overlay');
+  const menuToggle = document.getElementById('menuToggle');
+  const closeSidebar = document.getElementById('closeSidebar');
+
+  function openSidebar() { sidebar.classList.add('open'); overlay.classList.add('show'); menuToggle.innerHTML = '✕'; }
+  function closeSidebarFn() { sidebar.classList.remove('open'); overlay.classList.remove('show'); menuToggle.innerHTML = '☰'; }
+
+  if (menuToggle) {
+    menuToggle.addEventListener('click', () => {
+      if (sidebar.classList.contains('open')) closeSidebarFn();
+      else openSidebar();
+    });
+  }
+  if (closeSidebar) closeSidebar.addEventListener('click', closeSidebarFn);
+  if (overlay) overlay.addEventListener('click', closeSidebarFn);
+
+  // НАВИГАЦИЯ
+  const sections = document.querySelectorAll('.page');
+  const navLinks = document.querySelectorAll('#navMenu a');
+  let ticking = false;
+
+  function updateActiveNav() {
+    let current = '';
+    let scrollPos = window.scrollY + 120;
+    sections.forEach(section => {
+      if (section.offsetTop <= scrollPos) {
+        current = section.id;
+      }
+    });
+    navLinks.forEach(link => {
+      link.classList.remove('active');
+      if (link.getAttribute('href') === '#' + current) {
+        link.classList.add('active');
+      }
+    });
+  }
+
+  window.addEventListener('scroll', () => {
+    if (!ticking) {
+      window.requestAnimationFrame(() => {
+        updateActiveNav();
+        ticking = false;
+      });
+      ticking = true;
     }
+  });
 
-    document.querySelectorAll('.exercise-card').forEach(card => {
-        card.addEventListener('click', function() {
-            const key = this.dataset.exercise;
-            if (key) openModal(key);
-        });
+  navLinks.forEach(link => {
+    link.addEventListener('click', function(e) {
+      e.preventDefault();
+      const targetId = this.getAttribute('href');
+      const target = document.querySelector(targetId);
+      if (target) {
+        target.scrollIntoView({ behavior: 'smooth' });
+        if (window.innerWidth <= 768) closeSidebarFn();
+      }
+    });
+  });
+
+  setTimeout(updateActiveNav, 150);
+
+  // ПОИСК
+  const searchInput = document.getElementById('searchInput');
+  const searchResults = document.getElementById('searchResults');
+  const searchClear = document.getElementById('searchClear');
+
+  const pages = document.querySelectorAll('.page');
+  const searchableItems = [];
+
+  pages.forEach(page => {
+    const elements = page.querySelectorAll('h1, h2, h3, h4, p, li, .ex-name, .ex-desc, .ex-reps, .flags-list li, .intro-text, .goal-box, .callout, .cover-subtitle, .cover-meta, .about-text, .about-contacts, .bristol-row .desc');
+    const pageId = page.id || 'page';
+    const pageTitle = page.querySelector('h1, .page-title')?.textContent?.trim() || page.querySelector('.cover-title')?.textContent?.trim() || 'Страница';
+
+    elements.forEach(el => {
+      const text = el.textContent.trim();
+      if (text.length > 10) {
+        searchableItems.push({ text, pageId, pageTitle, element: el, section: page.querySelector('.section-kicker')?.textContent?.trim() || page.querySelector('.page-tab')?.textContent?.trim() || '' });
+      }
+    });
+  });
+
+  function performSearch(query) {
+    const q = query.toLowerCase().trim();
+    if (!q) { searchResults.classList.remove('show'); searchClear.classList.remove('show'); return; }
+
+    const results = [];
+    searchableItems.forEach(item => {
+      const textLower = item.text.toLowerCase();
+      if (textLower.includes(q)) {
+        const index = textLower.indexOf(q);
+        const start = Math.max(0, index - 30);
+        const end = Math.min(item.text.length, index + q.length + 30);
+        let snippet = item.text.substring(start, end);
+        if (start > 0) snippet = '…' + snippet;
+        if (end < item.text.length) snippet = snippet + '…';
+        const regex = new RegExp(`(${q.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')})`, 'gi');
+        const highlighted = snippet.replace(regex, '<mark>$1</mark>');
+        results.push({ title: item.pageTitle, snippet: highlighted, section: item.section, pageId: item.pageId, element: item.element });
+      }
     });
 
-    modalClose.addEventListener('click', closeModal);
-    modalOverlay.addEventListener('click', e => { if (e.target === modalOverlay) closeModal(); });
-    document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+    const limited = results.slice(0, 30);
+    if (limited.length === 0) {
+      searchResults.innerHTML = `<div class="no-results">😕 Ничего не найдено по запросу «${query}»</div>`;
+    } else {
+      let html = '';
+      limited.forEach(r => {
+        html += `<div class="result-item" data-page="${r.pageId}"><div class="match-title">${r.title}</div><div class="match-snippet">${r.snippet}</div>${r.section ? `<div class="match-section">${r.section}</div>` : ''}</div>`;
+      });
+      searchResults.innerHTML = html;
+      searchResults.querySelectorAll('.result-item').forEach(el => {
+        el.addEventListener('click', function() {
+          const pageId = this.dataset.page;
+          const target = document.getElementById(pageId);
+          if (target) { target.scrollIntoView({ behavior: 'smooth' }); searchResults.classList.remove('show'); searchInput.value = ''; searchClear.classList.remove('show'); }
+        });
+      });
+    }
+    searchResults.classList.add('show');
+    searchClear.classList.add('show');
+  }
+
+  searchInput.addEventListener('input', function() { performSearch(this.value); });
+  searchClear.addEventListener('click', function() { searchInput.value = ''; searchResults.classList.remove('show'); searchClear.classList.remove('show'); searchInput.focus(); });
+  document.addEventListener('click', function(e) { const container = document.getElementById('searchContainer'); const results = document.getElementById('searchResults'); if (!container.contains(e.target) && !results.contains(e.target)) { results.classList.remove('show'); } });
+  document.addEventListener('keydown', function(e) { if (e.key === 'Escape') { searchResults.classList.remove('show'); searchClear.classList.remove('show'); searchInput.blur(); } });
+})();
 </script>
 </body>
 </html>
