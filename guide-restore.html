@@ -18,7 +18,7 @@ body {
 }
 h1, h2, h3 { font-family: 'Georgia', serif; font-weight: 700; }
 
-/* ----- ОБЛОЖКА (адаптивная) ----- */
+/* ----- ОБЛОЖКА ----- */
 .cover {
   background: #faf6f0;
   padding: 40px 20px 30px;
@@ -134,7 +134,7 @@ h1.page-title { font-size: 26px; color: #2b2622; font-weight: 700; margin-bottom
   color: #e8ddc9; font-weight: 700; display: block; margin-bottom: 4px;
 }
 
-/* ----- КАРТОЧКИ УПРАЖНЕНИЙ (кликабельные) ----- */
+/* ----- КАРТОЧКИ УПРАЖНЕНИЙ ----- */
 .exercises-label {
   font-size: 13px; letter-spacing: 1px; text-transform: uppercase;
   color: #2d5a3d; font-weight: 700; border-bottom: 1px solid #ddd0bb;
@@ -247,7 +247,7 @@ h1.page-title { font-size: 26px; color: #2b2622; font-weight: 700; margin-bottom
   padding: 2px 10px; border-radius: 12px; backdrop-filter: blur(4px);
 }
 
-/* ----- МОДАЛЬНОЕ ОКНО ----- */
+/* ----- МОДАЛЬНОЕ ОКНО (исправлено) ----- */
 .modal-overlay {
   display: none; position: fixed; inset: 0;
   background: rgba(0,0,0,0.6); backdrop-filter: blur(4px);
@@ -269,10 +269,21 @@ h1.page-title { font-size: 26px; color: #2b2622; font-weight: 700; margin-bottom
 .modal-box .close-btn:hover { color: #2d3748; }
 .modal-box .modal-video {
   width: 100%; border-radius: 10px; background: #1a1a2e;
-  margin-bottom: 12px; max-height: 220px; object-fit: cover;
+  margin-bottom: 12px;
+  max-height: 180px; /* ← уменьшена высота видео */
+  object-fit: cover;
 }
 .modal-box h3 { font-size: 20px; color: #0b2b4a; margin-bottom: 4px; text-align: center; }
-.modal-box .modal-desc { font-size: 15px; color: #2d3748; line-height: 1.6; margin: 8px 0; }
+.modal-box .modal-desc {
+  font-size: 15px;
+  color: #2d3748;
+  line-height: 1.6;
+  margin: 8px 0;
+  word-wrap: break-word;
+  white-space: normal;
+  max-height: none; /* ← текст не обрезается */
+  overflow: visible;
+}
 .modal-box .modal-reps {
   background: #f4f6f0; padding: 10px 14px; border-radius: 8px;
   font-weight: 600; color: #2d5a3d; font-size: 14px; border-left: 3px solid #2d5a3d;
@@ -344,7 +355,7 @@ h1.page-title { font-size: 26px; color: #2b2622; font-weight: 700; margin-bottom
 .htu-text { font-size: 14px; line-height: 1.5; }
 .htu-text strong { color: #2b2622; }
 
-/* ----- БОКОВОЕ МЕНЮ (сайдбар) ----- */
+/* ----- БОКОВОЕ МЕНЮ ----- */
 .sidebar {
   position: fixed; top: 0; left: -300px; width: 280px; height: 100vh;
   background: #ffffff; padding: 20px 16px; overflow-y: auto;
@@ -378,7 +389,7 @@ h1.page-title { font-size: 26px; color: #2b2622; font-weight: 700; margin-bottom
   box-shadow: 0 4px 16px rgba(139, 58, 94, 0.4);
 }
 
-/* ----- АДАПТИВ ДЛЯ ОЧЕНЬ МАЛЕНЬКИХ ЭКРАНОВ ----- */
+/* ----- АДАПТИВ ДЛЯ МАЛЕНЬКИХ ЭКРАНОВ ----- */
 @media (max-width: 400px) {
   .cover-title { font-size: 26px; }
   .cover-subtitle { font-size: 13px; }
@@ -388,6 +399,7 @@ h1.page-title { font-size: 26px; color: #2b2622; font-weight: 700; margin-bottom
   .exercise-card .info .name { font-size: 13px; }
   .modal-box h3 { font-size: 17px; }
   .modal-box .modal-desc { font-size: 13px; }
+  .modal-box .modal-video { max-height: 140px; }
 }
 
 @media print {
@@ -787,19 +799,19 @@ h1.page-title { font-size: 26px; color: #2b2622; font-weight: 700; margin-bottom
 <script>
 (function() {
   const EXERCISE_DATA = {
-    'diaphragmatic': { title: '🌬️ Дыхание животом', video: 'diaphragmatic.mp4', desc: 'Лежа на спине...', reps: '2–3 раза в день' },
-    'kegel-slow': { title: '⏳ Изолированные сокращения (медленные)', video: 'kegel-slow.mp4', desc: 'Сожмите мышцы...', reps: '10 повторений, 3 раза в день' },
-    'pelvic-tilt': { title: '🔄 Наклон таза', video: 'pelvic-tilt.mp4', desc: 'Лежа на спине...', reps: '10–15 повторений' },
-    'walking': { title: '🚶‍♀️ Ходьба', video: 'walking.mp4', desc: 'Короткие прогулки...', reps: '5–30 минут ежедневно' },
-    'kegel-fast': { title: '⚡ Изолированные сокращения (быстрые)', video: 'kegel-fast.mp4', desc: 'Сжимайте и расслабляйте...', reps: '10 быстрых + 10 медленных' },
-    'glute-bridge': { title: '⬆️ Ягодичный мостик', video: 'glute-bridge.mp4', desc: 'Лежа на спине...', reps: '3 подхода по 15' },
-    'dead-bug': { title: '🐞 «Мёртвый жук»', video: 'dead-bug.mp4', desc: 'Лежа на спине...', reps: '2 подхода по 10–12' },
-    'aerobic': { title: '🏊 Аэробные нагрузки', video: 'aerobic.mp4', desc: 'Быстрая ходьба, плавание...', reps: '150 минут в неделю' },
-    'couch-to-5k': { title: '🏃‍♀️ От ходьбы к бегу', video: 'couch-to-5k.mp4', desc: 'Программа ходьба-бег...', reps: '3 раза в неделю' },
-    'core-advanced': { title: '💪 Упражнения на кор', video: 'core-advanced.mp4', desc: 'Скручивания, планка...', reps: '2–3 подхода по 10–15' },
-    'bird-dog': { title: '🐕 Птица-собака', video: 'bird-dog.mp4', desc: 'В упоре на четвереньках...', reps: '2–3 подхода по 10 раз' },
-    'belly-work': { title: '🤲 Работа с животом', video: 'belly-work.mp4', desc: 'Лёгкие пощипывания вокруг шва...', reps: '1–2 минуты 2–3 раза в день' },
-    'scar-work': { title: '🩹 Работа со швом', video: 'scar-work.mp4', desc: 'Мягкие поглаживания...', reps: '3–5 минут ежедневно' }
+    'diaphragmatic': { title: '🌬️ Дыхание животом', video: 'diaphragmatic.mp4', desc: 'Лежа на спине с согнутыми коленями, руки на животе. Вдох — живот поднимается, выдох — опускается. Дышите глубоко, без напряжения.', reps: '2–3 раза в день по 5–10 глубоких циклов' },
+    'kegel-slow': { title: '⏳ Изолированные сокращения (медленные)', video: 'kegel-slow.mp4', desc: 'Сожмите мышцы, как будто пытаетесь остановить мочеиспускание, и удерживайте. Затем расслабьте на 10 секунд.', reps: 'Удержание 5–10 сек · 10 повторений · 3 раза в день' },
+    'pelvic-tilt': { title: '🔄 Наклон таза', video: 'pelvic-tilt.mp4', desc: 'Лежа на спине, согнув колени, прижмите поясницу к полу, напрягая ягодицы и низ живота. Удержите 5 секунд.', reps: '10–15 повторений' },
+    'walking': { title: '🚶‍♀️ Ходьба', video: 'walking.mp4', desc: 'Короткие прогулки по дому или на улице. Начинайте с 5–10 минут, постепенно увеличивая до 20–30 минут.', reps: 'Ежедневно по самочувствию' },
+    'kegel-fast': { title: '⚡ Изолированные сокращения (быстрые)', video: 'kegel-fast.mp4', desc: 'Сожмите и сразу расслабьте мышцы тазового дна в быстром темпе. Делайте 10 быстрых + 10 медленных с удержанием 10 сек.', reps: '3 подхода в день' },
+    'glute-bridge': { title: '⬆️ Ягодичный мостик', video: 'glute-bridge.mp4', desc: 'Лежа на спине, согнув колени, стопы на полу. Поднимите таз вверх, напрягая ягодицы. Задержитесь в верхней точке на 2–3 секунды.', reps: '3 подхода по 15 повторений' },
+    'dead-bug': { title: '🐞 «Мёртвый жук»', video: 'dead-bug.mp4', desc: 'Лежа на спине, согните колени под 90° (голени параллельно полу). Поочередно выпрямляйте одну ногу, скользя пяткой по полу.', reps: '2 подхода по 10–12 раз на каждую ногу' },
+    'aerobic': { title: '🏊 Аэробные нагрузки', video: 'aerobic.mp4', desc: 'Быстрая ходьба, плавание кролем, велотренажер. Умеренная интенсивность, без ударной нагрузки.', reps: '150 минут в неделю (можно разбить по 20–25 минут в день)' },
+    'couch-to-5k': { title: '🏃‍♀️ От ходьбы к бегу', video: 'couch-to-5k.mp4', desc: 'Программа «ходьба-бег»: начинайте с интервалов (например, ходьба 60 сек, бег 30 сек). Постепенно увеличивайте время бега.', reps: '3 раза в неделю, по программе NHS' },
+    'core-advanced': { title: '💪 Упражнения на мышцы кора', video: 'core-advanced.mp4', desc: 'Скручивания, планка, подъемы ног — только если нет «конуса» (выпячивания) на животе и недержания. Начните с 2 подходов по 10 раз.', reps: '2–3 подхода по 10–15 повторений' },
+    'bird-dog': { title: '🐕 «Птица-собака» (Bird Dog)', video: 'bird-dog.mp4', desc: 'В упоре на четвереньках (колени под бёдрами, руки под плечами). Вытяните левую руку вперёд и правую ногу назад, сохраняя корпус неподвижным, без прогиба.', reps: '2–3 подхода по 10 раз на каждую сторону' },
+    'belly-work': { title: '🤲 Работа с животом', video: 'belly-work.mp4', desc: 'Делаем лёгкие пощипывания живота вокруг шва. Это помогает улучшить кровообращение, чувствительность и подвижность тканей в области послеоперационного рубца. Движения мягкие, без боли.', reps: 'По 1–2 минуты 2–3 раза в день' },
+    'scar-work': { title: '🩹 Работа со швом', video: 'scar-work.mp4', desc: 'Аккуратная работа со швом, если он уже зажил. Мягкие поглаживания, круговые движения и лёгкое натяжение кожи вокруг рубца. Помогает улучшить подвижность тканей и предотвратить спаечный процесс.', reps: '3–5 минут ежедневно' }
   };
 
   const modalOverlay = document.getElementById('modalOverlay');
