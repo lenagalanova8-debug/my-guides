@@ -2,362 +2,396 @@
 <html lang="ru">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
 <title>Памятка по восстановлению после родов</title>
 <style>
-@page { size: A4; margin: 0; }
-* { box-sizing: border-box; }
+* { box-sizing: border-box; margin: 0; padding: 0; }
 body {
-  font-family: 'DejaVu Sans', sans-serif;
-  color: #2b2622;
-  font-size: 12pt;
-  line-height: 1.65;
-  margin: 0;
-  padding: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   background: #faf6f0;
+  color: #2b2622;
+  font-size: 16px;
+  line-height: 1.6;
+  padding: 0;
+  margin: 0;
+  -webkit-text-size-adjust: 100%;
 }
-h1, h2, h3, .display { font-family: 'Lora', serif; }
+h1, h2, h3 { font-family: 'Georgia', serif; font-weight: 700; }
 
-.page {
-  width: 210mm;
-  min-height: 297mm;
+/* ----- ОБЛОЖКА (адаптивная) ----- */
+.cover {
+  background: #faf6f0;
+  padding: 40px 20px 30px;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   position: relative;
-  overflow: hidden;
-  page-break-after: always;
-  background: #ffffff;
-  margin: 0 auto;
 }
-.page:last-child { page-break-after: auto; }
-
-.cover { background: #faf6f0; }
-.cover .band-top { position: absolute; top: 0; left: 0; right: 0; height: 14mm; background: #8b3a5e; }
-.cover .band-bottom { position: absolute; bottom: 0; left: 0; right: 0; height: 14mm; background: #2d5a3d; }
-.cover-content { position: absolute; top: 0; left: 0; right: 0; bottom: 0; padding: 38mm 24mm 0 24mm; }
-.cover-eyebrow { font-size: 12pt; letter-spacing: 3px; text-transform: uppercase; color: #6b2a48; font-weight: bold; margin-bottom: 10mm; }
-.cover-title { font-size: 42pt; line-height: 1.12; color: #2b2622; font-weight: 700; margin: 0 0 6mm 0; }
+.cover .band-top {
+  position: absolute; top: 0; left: 0; right: 0;
+  height: 8px; background: #8b3a5e;
+}
+.cover .band-bottom {
+  position: absolute; bottom: 0; left: 0; right: 0;
+  height: 8px; background: #2d5a3d;
+}
+.cover-tags { text-align: right; margin-bottom: 20px; }
+.cover-pill {
+  display: inline-block;
+  font-size: 11px; letter-spacing: 1px; text-transform: uppercase;
+  color: #2d5a3d; border: 1.5px solid #2d5a3d;
+  border-radius: 30px; padding: 4px 14px;
+}
+.cover-eyebrow {
+  font-size: 13px; letter-spacing: 2px; text-transform: uppercase;
+  color: #6b2a48; font-weight: 700; margin-bottom: 12px;
+}
+.cover-title {
+  font-size: 32px; line-height: 1.15; color: #2b2622; font-weight: 700;
+}
 .cover-title em { font-style: normal; color: #8b3a5e; }
-.cover-subtitle { font-size: 15pt; color: #5d574c; max-width: 130mm; line-height: 1.5; margin-bottom: 14mm; }
-.cover-divider { width: 28mm; height: 2.2pt; background: #2d5a3d; margin-bottom: 10mm; }
-.cover-meta { font-size: 11pt; color: #6b6357; }
-.cover-meta div { margin-bottom: 2mm; }
+.cover-divider {
+  width: 50px; height: 3px; background: #2d5a3d; margin: 16px 0;
+}
+.cover-subtitle {
+  font-size: 15px; color: #5d574c; line-height: 1.5; margin-bottom: 20px;
+}
+.cover-meta { font-size: 13px; color: #6b6357; }
+.cover-meta div { margin-bottom: 4px; }
 .cover-meta strong { color: #2b2622; }
-.cover-tags { position: absolute; top: 38mm; right: 24mm; text-align: right; }
-.cover-pill { display: inline-block; font-size: 9pt; letter-spacing: 0.5px; text-transform: uppercase; color: #2d5a3d; border: 1pt solid #2d5a3d; border-radius: 20pt; padding: 2.2mm 5mm; margin-left: 2mm; }
-.cover-disclaimer { position: absolute; bottom: 20mm; left: 24mm; right: 24mm; font-size: 9.5pt; color: #8a8273; border-top: 0.75pt solid #ddd0bb; padding-top: 5mm; line-height: 1.5; }
+.cover-disclaimer {
+  font-size: 11px; color: #8a8273; border-top: 1px solid #ddd0bb;
+  padding-top: 14px; margin-top: 20px; line-height: 1.5;
+}
 
-.about-page { background: #faf6f0; padding: 24mm 22mm; }
-.about-photos { display: flex; gap: 8mm; margin: 6mm 0 8mm 0; justify-content: center; }
-.about-photo { width: 100%; max-width: 80mm; aspect-ratio: 1/1; background: #e8ddc9; border-radius: 12px; overflow: hidden; display: flex; align-items: center; justify-content: center; font-size: 40pt; color: #b3aa99; border: 2px dashed #8b3a5e; }
+/* ----- ОБ АВТОРЕ ----- */
+.about-page { padding: 30px 20px; background: #faf6f0; }
+.about-photos { display: flex; gap: 12px; justify-content: center; margin-bottom: 20px; }
+.about-photo {
+  width: 120px; height: 120px; border-radius: 50%;
+  background: #e8ddc9; overflow: hidden;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 40px; color: #b3aa99; border: 2px dashed #8b3a5e;
+  flex-shrink: 0;
+}
 .about-photo img { width: 100%; height: 100%; object-fit: cover; }
-.about-text { font-size: 12.5pt; line-height: 1.7; color: #3a342c; max-width: 140mm; margin: 0 auto; }
+.about-text { font-size: 15px; line-height: 1.7; color: #3a342c; }
 .about-text strong { color: #6b2a48; }
-.about-contacts { margin-top: 8mm; padding-top: 6mm; border-top: 1pt solid #ddd0bb; font-size: 11pt; color: #6b6357; }
+.about-contacts {
+  margin-top: 16px; padding-top: 14px; border-top: 1px solid #ddd0bb;
+  font-size: 14px; color: #6b6357;
+}
 .about-contacts a { color: #8b3a5e; text-decoration: none; }
-.about-contacts a:hover { text-decoration: underline; }
 
-.toc-page { background: #ffffff; padding: 24mm 22mm; }
-.toc-header { margin-bottom: 14mm; }
-.toc-eyebrow { font-size: 11pt; letter-spacing: 3px; text-transform: uppercase; color: #8b3a5e; font-weight: bold; margin-bottom: 3mm; }
-.toc-title { font-size: 28pt; color: #2b2622; font-weight: 700; }
-.toc-rule { height: 2pt; background: #2b2622; width: 100%; margin: 6mm 0 12mm 0; }
-.toc-part-label { font-size: 11pt; letter-spacing: 1.5px; text-transform: uppercase; color: #6b2a48; font-weight: bold; margin: 7mm 0 3mm 0; }
+/* ----- ОГЛАВЛЕНИЕ ----- */
+.toc-page { padding: 30px 20px; background: #ffffff; }
+.toc-eyebrow { font-size: 12px; letter-spacing: 2px; text-transform: uppercase; color: #8b3a5e; font-weight: 700; }
+.toc-title { font-size: 26px; color: #2b2622; font-weight: 700; margin: 4px 0 16px; }
+.toc-rule { height: 2px; background: #2b2622; width: 100%; margin-bottom: 20px; }
+.toc-part-label { font-size: 13px; letter-spacing: 1px; text-transform: uppercase; color: #6b2a48; font-weight: 700; margin: 20px 0 8px; }
 .toc-part-label.sage { color: #2d5a3d; }
-.toc-item { display: flex; align-items: baseline; padding: 2.6mm 0; font-size: 12pt; }
-.toc-num { font-family: 'Lora', serif; font-weight: 600; color: #8b3a5e; width: 10mm; flex-shrink: 0; font-size: 12pt; }
+.toc-item { display: flex; align-items: baseline; padding: 6px 0; font-size: 15px; border-bottom: 1px dotted #e8ddc9; }
+.toc-num { font-weight: 600; color: #8b3a5e; width: 30px; flex-shrink: 0; }
 .toc-item.sage .toc-num { color: #2d5a3d; }
-.toc-name { flex-shrink: 0; }
-.toc-fill { flex: 1; border-bottom: 0.75pt dotted #c9bca3; margin: 0 2mm 1.4mm 2mm; }
-.toc-page-num { flex-shrink: 0; color: #8a8273; font-size: 10pt; }
-.toc-sub { font-size: 10pt; color: #8a8273; margin-left: 10mm; margin-top: -0.5mm; margin-bottom: 1.5mm; }
+.toc-name { flex: 1; }
+.toc-page-num { color: #8a8273; font-size: 13px; }
+.toc-sub { font-size: 13px; color: #8a8273; padding-left: 30px; margin-bottom: 4px; }
 
-.content-page { background: #ffffff; padding: 20mm 22mm 24mm 22mm; }
-.page-tab { position: absolute; top: 0; right: 0; font-size: 9pt; letter-spacing: 1px; text-transform: uppercase; color: #ffffff; background: #2b2622; padding: 2.2mm 6mm 2mm 6mm; border-radius: 0 0 0 2.5mm; }
-.page-tab.terracotta { background: #8b3a5e; }
+/* ----- КОНТЕНТНЫЕ СТРАНИЦЫ ----- */
+.content-page { padding: 24px 18px 30px; background: #ffffff; }
+.page-tab {
+  display: inline-block;
+  font-size: 10px; letter-spacing: 1px; text-transform: uppercase;
+  color: #ffffff; background: #8b3a5e;
+  padding: 4px 12px; border-radius: 0 0 8px 8px;
+  margin-bottom: 12px;
+}
 .page-tab.sage { background: #2d5a3d; }
-.section-kicker { font-size: 11pt; letter-spacing: 2.5px; text-transform: uppercase; font-weight: bold; margin-bottom: 3mm; }
+.section-kicker { font-size: 12px; letter-spacing: 1.5px; text-transform: uppercase; font-weight: 700; margin-bottom: 4px; }
 .section-kicker.terracotta { color: #8b3a5e; }
 .section-kicker.sage { color: #2d5a3d; }
 .section-kicker.ink { color: #6b6357; }
-h1.page-title { font-size: 26pt; color: #2b2622; font-weight: 700; margin: 0 0 4mm 0; line-height: 1.2; }
-.intro-text { font-size: 12.5pt; line-height: 1.7; color: #3a342c; margin-bottom: 5mm; }
-.callout { background: #faf6f0; border-left: 3pt solid #8b3a5e; padding: 5mm 6mm; margin: 6mm 0; font-size: 11pt; line-height: 1.6; border-radius: 1mm; }
-.callout strong { color: #6b2a48; }
-.callout.sage { border-left-color: #2d5a3d; background: #f4f6f0; }
-.callout.sage strong { color: #2d5a3d; }
-.stat-grid { display: flex; gap: 5mm; margin: 8mm 0; }
-.stat-box { flex: 1; background: #faf6f0; border-radius: 2mm; padding: 6mm 5mm; text-align: center; }
-.stat-num { font-family: 'Lora', serif; font-size: 26pt; font-weight: 700; color: #8b3a5e; display: block; line-height: 1; margin-bottom: 2mm; }
-.stat-label { font-size: 9.5pt; color: #6b6357; line-height: 1.4; }
-.how-to-use { margin-top: 8mm; }
-.htu-row { display: flex; align-items: flex-start; gap: 4mm; margin-bottom: 4.5mm; }
-.htu-icon { width: 8mm; height: 8mm; border-radius: 50%; background: #2d5a3d; flex-shrink: 0; margin-top: 0.5mm; }
-.htu-row:nth-child(2) .htu-icon { background: #8b3a5e; }
-.htu-row:nth-child(3) .htu-icon { background: #6b2a48; }
-.htu-row:nth-child(4) .htu-icon { background: #2d5a3d; }
-.htu-text { font-size: 11.5pt; line-height: 1.55; padding-top: 0.3mm; }
-.htu-text strong { color: #2b2622; }
-.page-footer { position: absolute; bottom: 10mm; left: 22mm; right: 22mm; display: flex; justify-content: space-between; font-size: 9pt; color: #b3a98f; border-top: 0.5pt solid #e8ddc9; padding-top: 3mm; }
+h1.page-title { font-size: 26px; color: #2b2622; font-weight: 700; margin-bottom: 12px; }
+.intro-text { font-size: 15px; line-height: 1.7; color: #3a342c; margin-bottom: 12px; }
 
-.divider-page { position: relative; }
+/* ----- ФЛАГИ ----- */
+.flags-box {
+  background: #fdf1ea; border: 1px solid #f0d4ba; border-radius: 10px;
+  padding: 14px 16px; margin-bottom: 16px;
+}
+.flags-title { font-size: 14px; font-weight: 700; color: #6b2a48; margin-bottom: 6px; }
+.flags-list { font-size: 14px; line-height: 1.6; color: #5a4030; padding-left: 20px; }
+.flags-list li { margin-bottom: 4px; }
+
+/* ----- ЦЕЛЬ ----- */
+.goal-box {
+  background: #2b2622; color: #faf6f0; border-radius: 10px;
+  padding: 14px 16px; margin: 12px 0 16px; font-size: 15px; line-height: 1.5;
+}
+.goal-box .goal-label {
+  font-size: 11px; letter-spacing: 1.5px; text-transform: uppercase;
+  color: #e8ddc9; font-weight: 700; display: block; margin-bottom: 4px;
+}
+
+/* ----- КАРТОЧКИ УПРАЖНЕНИЙ (кликабельные) ----- */
+.exercises-label {
+  font-size: 13px; letter-spacing: 1px; text-transform: uppercase;
+  color: #2d5a3d; font-weight: 700; border-bottom: 1px solid #ddd0bb;
+  padding-bottom: 8px; margin: 16px 0 10px;
+}
+.exercise-card {
+  background: #faf6f0; border: 1px solid #e2dcd0; border-radius: 10px;
+  padding: 12px 14px; margin-bottom: 8px; cursor: pointer;
+  transition: 0.2s; display: flex; align-items: center; gap: 12px;
+}
+.exercise-card:hover { border-color: #8b3a5e; background: #f5ede4; }
+.exercise-card .emoji { font-size: 24px; flex-shrink: 0; }
+.exercise-card .info { flex: 1; }
+.exercise-card .info .name { font-weight: 600; font-size: 15px; color: #2b2622; }
+.exercise-card .info .hint { font-size: 12px; color: #8a8273; }
+
+/* ----- ЗАПРЕЩЕНО ----- */
+.forbidden-box {
+  background: #f9e4e0; border-radius: 10px; padding: 12px 14px;
+  margin: 12px 0; font-size: 14px; color: #8c3a2a;
+}
+.forbidden-box strong { color: #6b2a48; }
+
+/* ----- РАЗДЕЛИТЕЛИ ЧАСТЕЙ ----- */
+.divider-page {
+  padding: 40px 20px; text-align: center;
+  min-height: 200px; display: flex; flex-direction: column; justify-content: center;
+}
 .divider-page.terracotta { background: #8b3a5e; }
 .divider-page.sage { background: #2d5a3d; }
-.divider-content { position: absolute; top: 50%; left: 22mm; right: 22mm; transform: translateY(-50%); }
-.divider-roman { font-family: 'Lora', serif; font-size: 15pt; color: rgba(255,255,255,0.75); letter-spacing: 3px; margin-bottom: 6mm; }
-.divider-title { font-family: 'Lora', serif; font-size: 36pt; color: #ffffff; font-weight: 700; line-height: 1.15; margin-bottom: 8mm; }
-.divider-desc { font-size: 13pt; color: rgba(255,255,255,0.88); max-width: 130mm; line-height: 1.6; }
-.divider-phases { margin-top: 14mm; display: flex; gap: 8mm; }
-.divider-phase { flex: 1; }
-.divider-phase-num { font-family: 'Lora', serif; font-size: 22pt; color: rgba(255,255,255,0.55); font-weight: 700; margin-bottom: 1.5mm; }
-.divider-phase-name { font-size: 10pt; color: #ffffff; font-weight: bold; margin-bottom: 1mm; }
-.divider-phase-time { font-size: 9.5pt; color: rgba(255,255,255,0.7); }
-.divider-corner { position: absolute; bottom: 0; right: 0; width: 60mm; height: 60mm; background: rgba(255,255,255,0.07); border-radius: 50%; transform: translate(20mm, 20mm); }
-.divider-corner2 { position: absolute; bottom: 0; right: 0; width: 40mm; height: 40mm; background: rgba(255,255,255,0.07); border-radius: 50%; transform: translate(10mm, 10mm); }
+.divider-roman { font-size: 14px; color: rgba(255,255,255,0.7); letter-spacing: 3px; }
+.divider-title { font-size: 30px; color: #ffffff; font-weight: 700; line-height: 1.2; margin: 8px 0; }
+.divider-desc { font-size: 15px; color: rgba(255,255,255,0.85); line-height: 1.5; }
+.divider-phases { margin-top: 20px; display: flex; flex-direction: column; gap: 8px; }
+.divider-phase-num { font-size: 22px; color: rgba(255,255,255,0.5); font-weight: 700; }
+.divider-phase-name { font-size: 14px; color: #ffffff; font-weight: 700; }
+.divider-phase-time { font-size: 12px; color: rgba(255,255,255,0.7); }
 
-.phase-header { display: flex; align-items: baseline; gap: 5mm; margin-bottom: 2mm; }
-.phase-tag { font-family: 'Lora', serif; font-size: 28pt; font-weight: 700; color: #8b3a5e; line-height: 1; }
+/* ----- ФАЗЫ ----- */
+.phase-header { display: flex; align-items: baseline; gap: 10px; margin-bottom: 4px; flex-wrap: wrap; }
+.phase-tag { font-size: 28px; font-weight: 700; color: #8b3a5e; line-height: 1; }
 .phase-tag.sage { color: #2d5a3d; }
-.phase-titleblock h1 { font-size: 20pt; margin: 0; color: #2b2622; font-weight: 700; }
-.phase-weeks { font-size: 11pt; color: #8a8273; margin-top: 1mm; }
-.goal-box { background: #2b2622; color: #faf6f0; border-radius: 2mm; padding: 5mm 6mm; margin: 5mm 0 6mm 0; font-size: 11.5pt; line-height: 1.55; }
-.goal-box .goal-label { font-size: 9.5pt; letter-spacing: 2px; text-transform: uppercase; color: #e8ddc9; font-weight: bold; margin-bottom: 1.5mm; display: block; }
-.required-note { display: inline-block; background: #f4e3d4; color: #6b2a48; font-size: 9.5pt; font-weight: bold; padding: 1.2mm 4mm; border-radius: 10pt; margin-bottom: 4mm; }
-.exercises-label { font-size: 10.5pt; letter-spacing: 1.5px; text-transform: uppercase; color: #2d5a3d; font-weight: bold; margin: 5mm 0 3mm 0; border-bottom: 1pt solid #ddd0bb; padding-bottom: 1.5mm; }
-.ex-item { margin-bottom: 4mm; padding-left: 0; }
-.ex-row { display: flex; gap: 3mm; }
-.ex-bullet { font-family: 'Lora', serif; font-weight: 700; color: #ffffff; background: #2d5a3d; width: 5.5mm; height: 5.5mm; border-radius: 50%; text-align: center; font-size: 9pt; line-height: 5.5mm; flex-shrink: 0; }
-.ex-body { flex: 1; }
-.ex-name { font-weight: bold; color: #2b2622; font-size: 11.5pt; margin-bottom: 0.8mm; }
-.ex-desc { font-size: 11pt; color: #4a443a; line-height: 1.5; margin-bottom: 1.3mm; }
-.ex-reps { font-size: 10.5pt; color: #2d5a3d; font-weight: bold; }
-.ex-reps::before { content: "→ "; }
-.forbidden-box { background: #f9e4e0; border-radius: 2mm; padding: 4mm 5mm; margin: 5mm 0; font-size: 11pt; color: #8c3a2a; }
-.forbidden-box strong { color: #6b2a48; }
-.flags-box { background: #fdf1ea; border: 1pt solid #f0d4ba; border-radius: 2mm; padding: 4.5mm 5.5mm; margin-bottom: 5mm; }
-.flags-title { font-size: 10.5pt; font-weight: bold; color: #6b2a48; margin-bottom: 2.5mm; display: flex; align-items: center; gap: 2mm; }
-.flags-list { font-size: 10.5pt; line-height: 1.6; color: #5a4030; margin: 0; padding-left: 4mm; }
-.flags-list li { margin-bottom: 1mm; }
+.phase-titleblock h1 { font-size: 22px; margin: 0; color: #2b2622; font-weight: 700; }
+.phase-weeks { font-size: 14px; color: #8a8273; }
+.required-note {
+  display: inline-block; background: #f4e3d4; color: #6b2a48;
+  font-size: 12px; font-weight: 700; padding: 4px 12px; border-radius: 20px;
+  margin-bottom: 8px;
+}
 
-.companion-card { margin-bottom: 7mm; break-inside: avoid; }
-.companion-head { display: flex; align-items: center; gap: 3.5mm; margin-bottom: 2.5mm; }
-.companion-icon { width: 9mm; height: 9mm; border-radius: 50%; background: #2d5a3d; flex-shrink: 0; }
-.companion-title { font-size: 15pt; font-weight: 700; color: #2b2622; }
-.companion-body { font-size: 11.5pt; line-height: 1.6; color: #3a342c; padding-left: 12.5mm; }
-.companion-body p { margin: 0 0 2.5mm 0; }
+/* ----- КОМПАНЬОНЫ (диастаз и т.д.) ----- */
+.companion-card { margin-bottom: 16px; }
+.companion-head { display: flex; align-items: center; gap: 10px; margin-bottom: 6px; }
+.companion-icon {
+  width: 36px; height: 36px; border-radius: 50%; background: #2d5a3d; flex-shrink: 0;
+}
+.companion-title { font-size: 17px; font-weight: 700; color: #2b2622; }
+.companion-body { font-size: 14px; line-height: 1.6; color: #3a342c; padding-left: 46px; }
+.companion-body p { margin-bottom: 8px; }
 .companion-body strong { color: #6b2a48; }
-.mini-label { font-size: 9.5pt; font-weight: bold; color: #2d5a3d; text-transform: uppercase; letter-spacing: 0.5px; }
+.mini-label { font-size: 11px; font-weight: 700; color: #2d5a3d; text-transform: uppercase; letter-spacing: 0.5px; }
 .tag-no { color: #6b2a48; }
 .tag-yes { color: #2d5a3d; }
-.red-flag-inline { background: #fdf1ea; border-radius: 1.5mm; padding: 2.5mm 4mm; font-size: 10pt; color: #8c3a2a; margin-top: 2mm; }
+.red-flag-inline {
+  background: #fdf1ea; border-radius: 8px; padding: 10px 12px;
+  font-size: 13px; color: #8c3a2a; margin-top: 8px;
+}
 
-.summary-table { width: 100%; border-collapse: collapse; font-size: 10pt; margin-top: 4mm; }
-.summary-table th { background: #2b2622; color: #faf6f0; text-align: left; padding: 3mm 3mm; font-size: 9.5pt; letter-spacing: 0.5px; text-transform: uppercase; }
-.summary-table td { padding: 3mm 3mm; border-bottom: 0.5pt solid #e8ddc9; vertical-align: top; line-height: 1.45; }
+/* ----- ТАБЛИЦА ----- */
+.summary-table { width: 100%; border-collapse: collapse; font-size: 13px; margin-top: 12px; }
+.summary-table th {
+  background: #2b2622; color: #faf6f0; text-align: left;
+  padding: 8px 10px; font-size: 11px; text-transform: uppercase; letter-spacing: 0.5px;
+}
+.summary-table td { padding: 8px 10px; border-bottom: 1px solid #e8ddc9; vertical-align: top; line-height: 1.4; }
 .summary-table tr:nth-child(even) td { background: #faf6f0; }
-.summary-table .phase-cell { font-weight: bold; color: #8b3a5e; white-space: nowrap; }
+.summary-table .phase-cell { font-weight: 700; color: #8b3a5e; }
 
-.final-list { margin: 5mm 0; padding: 0; list-style: none; }
-.final-list li { display: flex; gap: 4mm; margin-bottom: 5mm; align-items: flex-start; }
-.final-num { font-family: 'Lora', serif; font-size: 20pt; font-weight: 700; color: #8b3a5e; flex-shrink: 0; width: 12mm; }
-.final-text { font-size: 12pt; line-height: 1.55; padding-top: 1mm; }
+/* ----- ИТОГОВЫЕ РЕКОМЕНДАЦИИ ----- */
+.final-list { margin: 16px 0; padding: 0; list-style: none; }
+.final-list li { display: flex; gap: 12px; margin-bottom: 14px; align-items: flex-start; }
+.final-num {
+  font-family: 'Georgia', serif; font-size: 22px; font-weight: 700;
+  color: #8b3a5e; flex-shrink: 0; width: 36px;
+}
+.final-text { font-size: 15px; line-height: 1.5; padding-top: 2px; }
 .final-text strong { color: #2b2622; }
-.closing-note { background: #2d5a3d; color: #ffffff; border-radius: 2mm; padding: 6mm 7mm; margin-top: 8mm; font-size: 12pt; line-height: 1.65; }
+.closing-note {
+  background: #2d5a3d; color: #ffffff; border-radius: 10px;
+  padding: 16px 18px; margin-top: 16px; font-size: 15px; line-height: 1.6;
+}
 .closing-note strong { color: #e8ddc9; }
 
-.back-cover { background: #2b2622; color: #f0ebe0; }
-.back-content { position: absolute; top: 45%; left: 24mm; right: 24mm; transform: translateY(-50%); text-align: center; }
-.back-mark { width: 10mm; height: 10mm; border-radius: 50%; background: #8b3a5e; margin: 0 auto 8mm auto; }
-.back-title { font-family: 'Lora', serif; font-size: 18pt; margin-bottom: 4mm; color: #ffffff; }
-.back-text { font-size: 11pt; color: #b3aa99; line-height: 1.7; max-width: 110mm; margin: 0 auto; }
-.back-sources { margin-top: 10mm; font-size: 9.5pt; color: #8a8273; letter-spacing: 0.5px; }
+/* ----- ЗАДНЯЯ ОБЛОЖКА ----- */
+.back-cover { background: #2b2622; color: #f0ebe0; padding: 60px 20px; text-align: center; }
+.back-mark { width: 40px; height: 40px; border-radius: 50%; background: #8b3a5e; margin: 0 auto 16px; }
+.back-title { font-size: 22px; font-weight: 700; margin-bottom: 12px; color: #ffffff; }
+.back-text { font-size: 15px; color: #b3aa99; line-height: 1.7; max-width: 400px; margin: 0 auto; }
+.back-sources { margin-top: 16px; font-size: 12px; color: #8a8273; letter-spacing: 0.5px; }
 
-.menu-toggle {
-  display: none;
-  position: fixed;
-  bottom: 20px;
-  right: 20px;
-  z-index: 1001;
-  background: #8b3a5e;
-  color: white;
-  border: none;
-  border-radius: 50%;
-  width: 60px;
-  height: 60px;
-  font-size: 28px;
-  cursor: pointer;
-  box-shadow: 0 4px 16px rgba(139, 58, 94, 0.4);
-  transition: transform 0.2s;
+/* ----- ВИДЕО КОНТЕЙНЕРЫ ----- */
+.video-container {
+  background: #1a1a2e; border-radius: 12px; overflow: hidden;
+  margin: 12px 0; position: relative;
 }
-.menu-toggle:hover { transform: scale(1.05); }
-
-.sidebar {
-  position: fixed;
-  top: 0;
-  left: -320px;
-  width: 300px;
-  height: 100vh;
-  background: #ffffff;
-  border-right: 1px solid #e9edf4;
-  padding: 1.8rem 1.2rem;
-  overflow-y: auto;
-  z-index: 1000;
-  transition: left 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  box-shadow: 4px 0 20px rgba(0,0,0,0.08);
-  font-family: 'DejaVu Sans', sans-serif;
+.video-container video { display: block; width: 100%; height: auto; max-height: 250px; object-fit: cover; }
+.video-container .video-label {
+  position: absolute; bottom: 6px; left: 10px;
+  background: rgba(0,0,0,0.6); color: #ffffff; font-size: 10px;
+  padding: 2px 10px; border-radius: 12px; backdrop-filter: blur(4px);
 }
-.sidebar.open { left: 0; }
-.sidebar .brand { font-size: 1.2rem; font-weight: 700; color: #0b2b4a; margin-bottom: 0.25rem; display: flex; align-items: center; gap: 8px; }
-.sidebar .brand span { color: #8b3a5e; }
-.sidebar .sub { font-size: 0.9rem; color: #6b7a8f; margin-bottom: 1.5rem; padding-bottom: 0.75rem; border-bottom: 1px solid #eef2f7; }
-.sidebar nav a { display: block; padding: 0.6rem 0.7rem; margin-bottom: 0.15rem; border-radius: 6px; color: #2c3e50; text-decoration: none; font-size: 1rem; font-weight: 500; transition: all 0.2s; cursor: pointer; }
-.sidebar nav a:hover { background: #eef4ff; color: #8b3a5e; }
-.sidebar nav a.active { background: #8b3a5e; color: white; }
-.sidebar .close-sidebar { position: absolute; top: 12px; right: 16px; background: none; border: none; font-size: 1.8rem; cursor: pointer; color: #a0aec0; }
-.sidebar .close-sidebar:hover { color: #2d3748; }
-.overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.3); z-index: 999; }
-.overlay.show { display: block; }
 
-.exercise-card {
-  background: #faf6f0;
-  border: 1px solid #e2dcd0;
-  border-radius: 10px;
-  padding: 0.9rem 1rem;
-  margin-bottom: 0.6rem;
-  cursor: pointer;
-  transition: all 0.2s;
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-.exercise-card:hover { border-color: #8b3a5e; background: #f5ede4; transform: translateY(-2px); box-shadow: 0 4px 12px rgba(139, 58, 94, 0.12); }
-.exercise-card .emoji { font-size: 1.8rem; }
-.exercise-card .info { flex: 1; }
-.exercise-card .info .name { font-weight: 600; color: #2b2622; font-size: 11.5pt; }
-.exercise-card .info .hint { font-size: 9pt; color: #8a8273; }
-
+/* ----- МОДАЛЬНОЕ ОКНО ----- */
 .modal-overlay {
-  display: none;
-  position: fixed;
-  inset: 0;
-  background: rgba(0,0,0,0.5);
-  backdrop-filter: blur(4px);
-  justify-content: center;
-  align-items: center;
-  z-index: 2000;
+  display: none; position: fixed; inset: 0;
+  background: rgba(0,0,0,0.6); backdrop-filter: blur(4px);
+  justify-content: center; align-items: center; z-index: 2000;
+  padding: 16px;
 }
 .modal-overlay.open { display: flex; }
 .modal-box {
-  background: white;
-  max-width: 600px;
-  width: 92%;
-  padding: 2.2rem 2rem;
-  border-radius: 16px;
+  background: white; max-width: 500px; width: 100%;
+  padding: 24px 20px; border-radius: 16px;
   box-shadow: 0 20px 60px rgba(0,0,0,0.3);
-  animation: slideUp 0.25s ease;
-  position: relative;
-  max-height: 90vh;
-  overflow-y: auto;
+  max-height: 90vh; overflow-y: auto; position: relative;
 }
-@keyframes slideUp {
-  from { opacity: 0; transform: translateY(30px) scale(0.96); }
-  to { opacity: 1; transform: translateY(0) scale(1); }
+.modal-box .close-btn {
+  position: absolute; top: 10px; right: 16px;
+  font-size: 28px; cursor: pointer; color: #a0aec0; background: none; border: none;
+  line-height: 1;
 }
-.modal-box .close-btn { position: absolute; top: 10px; right: 16px; font-size: 2rem; cursor: pointer; color: #a0aec0; background: none; border: none; line-height: 1; }
 .modal-box .close-btn:hover { color: #2d3748; }
-.modal-box .modal-video { width: 100%; border-radius: 12px; background: #1a1a2e; margin-bottom: 12px; max-height: 280px; object-fit: cover; }
-.modal-box h3 { font-size: 1.5rem; color: #0b2b4a; margin-bottom: 0.3rem; text-align: center; }
-.modal-box .modal-desc { color: #2d3748; font-size: 11.5pt; line-height: 1.6; margin: 0.5rem 0; }
-.modal-box .modal-reps { background: #f4f6f0; padding: 0.7rem 1rem; border-radius: 8px; font-weight: 600; color: #2d5a3d; font-size: 10.5pt; border-left: 3px solid #2d5a3d; }
-
-.video-container { background: #1a1a2e; border-radius: 12px; overflow: hidden; margin: 12px 0 16px 0; position: relative; }
-.video-container video { display: block; width: 100%; height: auto; max-height: 300px; object-fit: cover; }
-.video-container .video-label { position: absolute; bottom: 8px; left: 12px; background: rgba(0,0,0,0.6); color: #ffffff; font-size: 8.5pt; padding: 2px 10px; border-radius: 12px; font-weight: 300; letter-spacing: 0.5px; backdrop-filter: blur(4px); }
-
-.image-container { background: #f4f6f0; border: 2px dashed #8b3a5e; border-radius: 12px; padding: 20px; text-align: center; margin: 10px 0 15px 0; min-height: 150px; display: flex; flex-direction: column; align-items: center; justify-content: center; color: #6b6357; font-size: 10.5pt; }
-.image-container .image-placeholder { font-size: 3rem; margin-bottom: 6px; }
-.image-container .image-label { font-style: italic; color: #8a8273; font-size: 9.5pt; }
-
-.search-container {
-  position: fixed;
-  top: 12px;
-  left: 50%;
-  transform: translateX(-50%);
-  z-index: 1002;
-  width: 92%;
-  max-width: 600px;
-  display: flex;
-  gap: 6px;
-  background: white;
-  padding: 8px 12px 8px 18px;
-  border-radius: 40px;
-  box-shadow: 0 4px 20px rgba(0,0,0,0.12);
-  border: 1px solid #e2dcd0;
-  transition: box-shadow 0.2s, border-color 0.2s;
-  font-family: 'DejaVu Sans', sans-serif;
+.modal-box .modal-video {
+  width: 100%; border-radius: 10px; background: #1a1a2e;
+  margin-bottom: 12px; max-height: 220px; object-fit: cover;
 }
-.search-container:focus-within { box-shadow: 0 4px 28px rgba(139, 58, 94, 0.20); border-color: #8b3a5e; }
-.search-container input { flex: 1; border: none; outline: none; font-size: 12pt; padding: 10px 0; background: transparent; color: #2b2622; font-family: 'DejaVu Sans', sans-serif; }
-.search-container input::placeholder { color: #b3aa99; font-weight: 300; }
-.search-container .search-icon { font-size: 1.2rem; color: #b3aa99; display: flex; align-items: center; padding-right: 4px; }
-.search-container .search-clear { background: none; border: none; font-size: 1.4rem; color: #b3aa99; cursor: pointer; padding: 0 4px; display: none; align-items: center; }
-.search-container .search-clear.show { display: flex; }
-.search-container .search-clear:hover { color: #2b2622; }
+.modal-box h3 { font-size: 20px; color: #0b2b4a; margin-bottom: 4px; text-align: center; }
+.modal-box .modal-desc { font-size: 15px; color: #2d3748; line-height: 1.6; margin: 8px 0; }
+.modal-box .modal-reps {
+  background: #f4f6f0; padding: 10px 14px; border-radius: 8px;
+  font-weight: 600; color: #2d5a3d; font-size: 14px; border-left: 3px solid #2d5a3d;
+}
+
+/* ----- ПОИСК ----- */
+.search-container {
+  position: sticky; top: 0; z-index: 100;
+  background: white; padding: 10px 16px;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+  display: flex; gap: 8px; align-items: center;
+  border-bottom: 1px solid #e2dcd0;
+}
+.search-container input {
+  flex: 1; border: none; outline: none;
+  font-size: 15px; padding: 8px 0; background: transparent; color: #2b2622;
+}
+.search-container input::placeholder { color: #b3aa99; }
+.search-container .search-icon { font-size: 18px; color: #b3aa99; }
+.search-container .search-clear {
+  background: none; border: none; font-size: 20px; color: #b3aa99;
+  cursor: pointer; padding: 0 4px; display: none;
+}
+.search-container .search-clear.show { display: block; }
 .search-results {
-  position: fixed;
-  top: 72px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 92%;
-  max-width: 600px;
-  max-height: 60vh;
-  overflow-y: auto;
-  background: white;
-  border-radius: 16px;
-  box-shadow: 0 8px 40px rgba(0,0,0,0.15);
-  border: 1px solid #e2dcd0;
-  z-index: 1002;
-  padding: 8px 0;
-  display: none;
+  background: white; border-radius: 12px; box-shadow: 0 8px 30px rgba(0,0,0,0.12);
+  border: 1px solid #e2dcd0; padding: 8px 0; display: none;
+  max-height: 60vh; overflow-y: auto;
 }
 .search-results.show { display: block; }
-.search-results .result-item { padding: 12px 18px; cursor: pointer; border-bottom: 1px solid #f4f0ea; transition: background 0.15s; font-size: 11pt; line-height: 1.45; color: #2b2622; }
+.search-results .result-item {
+  padding: 10px 16px; cursor: pointer; border-bottom: 1px solid #f4f0ea;
+  font-size: 14px; line-height: 1.4; color: #2b2622;
+}
 .search-results .result-item:last-child { border-bottom: none; }
 .search-results .result-item:hover { background: #faf6f0; }
-.search-results .result-item .match-title { font-weight: 600; color: #8b3a5e; font-size: 11pt; margin-bottom: 2px; }
-.search-results .result-item .match-snippet { color: #6b6357; font-size: 10pt; }
-.search-results .result-item .match-snippet mark { background: #f5e3b3; padding: 0 2px; border-radius: 2px; color: #2b2622; }
-.search-results .result-item .match-section { font-size: 8.5pt; color: #b3aa99; text-transform: uppercase; letter-spacing: 0.5px; margin-top: 2px; }
-.search-results .no-results { padding: 24px 16px; text-align: center; color: #b3aa99; font-size: 11pt; }
+.search-results .result-item .match-title { font-weight: 600; color: #8b3a5e; font-size: 14px; }
+.search-results .result-item .match-snippet { color: #6b6357; font-size: 13px; }
+.search-results .result-item .match-snippet mark { background: #f5e3b3; padding: 0 2px; border-radius: 2px; }
+.search-results .result-item .match-section { font-size: 10px; color: #b3aa99; text-transform: uppercase; letter-spacing: 0.5px; margin-top: 2px; }
+.search-results .no-results { padding: 20px 16px; text-align: center; color: #b3aa99; font-size: 14px; }
 
-@media (max-width: 768px) {
-  .menu-toggle { display: block; width: 56px; height: 56px; font-size: 24px; }
-  .page { width: 100%; min-height: 100vh; }
-  .cover-content { padding: 20mm 16mm 0 16mm; }
-  .cover-title { font-size: 30pt; }
-  .cover-subtitle { font-size: 13pt; }
-  .content-page { padding: 16mm 14mm 20mm 14mm; }
-  .stat-grid { flex-direction: column; }
-  .divider-content { padding: 0 16mm; }
-  .divider-title { font-size: 26pt; }
-  .divider-phases { flex-direction: column; gap: 4mm; }
-  .sidebar { width: 280px; left: -300px; }
-  .page-footer { font-size: 7pt; }
-  .search-container { top: 8px; padding: 4px 8px 4px 14px; }
-  .search-container input { font-size: 10.5pt; padding: 8px 0; }
-  .search-results { top: 60px; max-height: 55vh; }
-  body { font-size: 11pt; }
-  .exercise-card .info .name { font-size: 10.5pt; }
-  .modal-box h3 { font-size: 1.2rem; }
-  .modal-box .modal-desc { font-size: 10.5pt; }
-  .modal-box .modal-video { max-height: 200px; }
-  h1.page-title { font-size: 20pt; }
-  .phase-titleblock h1 { font-size: 16pt; }
-  .stat-num { font-size: 20pt; }
-  .about-photos { flex-direction: column; align-items: center; }
-  .about-photo { max-width: 60mm; }
+/* ----- ПОДВАЛ ----- */
+.page-footer {
+  font-size: 10px; color: #b3a98f; border-top: 1px solid #e8ddc9;
+  padding-top: 10px; margin-top: 20px;
+  display: flex; justify-content: space-between;
 }
+
+/* ----- ОБЩИЕ УТИЛИТЫ ----- */
+.callout {
+  background: #faf6f0; border-left: 4px solid #8b3a5e;
+  padding: 12px 14px; margin: 12px 0; font-size: 14px; line-height: 1.6;
+  border-radius: 6px;
+}
+.callout strong { color: #6b2a48; }
+.callout.sage { border-left-color: #2d5a3d; background: #f4f6f0; }
+.callout.sage strong { color: #2d5a3d; }
+.stat-grid { display: flex; gap: 10px; margin: 12px 0; flex-wrap: wrap; }
+.stat-box { flex: 1; min-width: 80px; background: #faf6f0; border-radius: 8px; padding: 12px; text-align: center; }
+.stat-num { font-size: 28px; font-weight: 700; color: #8b3a5e; display: block; line-height: 1; }
+.stat-label { font-size: 11px; color: #6b6357; line-height: 1.3; margin-top: 4px; }
+.how-to-use { margin-top: 12px; }
+.htu-row { display: flex; gap: 10px; margin-bottom: 10px; align-items: flex-start; }
+.htu-icon { width: 28px; height: 28px; border-radius: 50%; background: #2d5a3d; flex-shrink: 0; margin-top: 2px; }
+.htu-row:nth-child(2) .htu-icon { background: #8b3a5e; }
+.htu-row:nth-child(3) .htu-icon { background: #6b2a48; }
+.htu-row:nth-child(4) .htu-icon { background: #2d5a3d; }
+.htu-text { font-size: 14px; line-height: 1.5; }
+.htu-text strong { color: #2b2622; }
+
+/* ----- БОКОВОЕ МЕНЮ (сайдбар) ----- */
+.sidebar {
+  position: fixed; top: 0; left: -300px; width: 280px; height: 100vh;
+  background: #ffffff; padding: 20px 16px; overflow-y: auto;
+  z-index: 1000; transition: left 0.3s ease; box-shadow: 4px 0 20px rgba(0,0,0,0.08);
+}
+.sidebar.open { left: 0; }
+.sidebar .brand { font-size: 18px; font-weight: 700; color: #0b2b4a; margin-bottom: 4px; }
+.sidebar .brand span { color: #8b3a5e; }
+.sidebar .sub { font-size: 13px; color: #6b7a8f; margin-bottom: 16px; border-bottom: 1px solid #eef2f7; padding-bottom: 10px; }
+.sidebar nav a {
+  display: block; padding: 8px 10px; margin-bottom: 2px;
+  border-radius: 6px; color: #2c3e50; text-decoration: none;
+  font-size: 14px; font-weight: 500; cursor: pointer;
+}
+.sidebar nav a:hover { background: #eef4ff; color: #8b3a5e; }
+.sidebar nav a.active { background: #8b3a5e; color: white; }
+.sidebar .close-sidebar {
+  position: absolute; top: 12px; right: 16px;
+  background: none; border: none; font-size: 24px; cursor: pointer; color: #a0aec0;
+}
+.sidebar .close-sidebar:hover { color: #2d3748; }
+.overlay {
+  display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.3); z-index: 999;
+}
+.overlay.show { display: block; }
+
+.menu-toggle {
+  position: fixed; bottom: 20px; right: 20px; z-index: 1001;
+  background: #8b3a5e; color: white; border: none; border-radius: 50%;
+  width: 56px; height: 56px; font-size: 24px; cursor: pointer;
+  box-shadow: 0 4px 16px rgba(139, 58, 94, 0.4);
+}
+
+/* ----- АДАПТИВ ДЛЯ ОЧЕНЬ МАЛЕНЬКИХ ЭКРАНОВ ----- */
+@media (max-width: 400px) {
+  .cover-title { font-size: 26px; }
+  .cover-subtitle { font-size: 13px; }
+  .about-photo { width: 80px; height: 80px; font-size: 28px; }
+  .about-text { font-size: 13px; }
+  .phase-titleblock h1 { font-size: 18px; }
+  .exercise-card .info .name { font-size: 13px; }
+  .modal-box h3 { font-size: 17px; }
+  .modal-box .modal-desc { font-size: 13px; }
+}
+
 @media print {
   .sidebar, .menu-toggle, .overlay, .modal-overlay, .search-container, .search-results { display: none !important; }
-  .page { margin: 0; box-shadow: none; }
 }
 </style>
 </head>
@@ -366,7 +400,7 @@ h1.page-title { font-size: 26pt; color: #2b2622; font-weight: 700; margin: 0 0 4
 <!-- ПОИСК -->
 <div class="search-container" id="searchContainer">
   <span class="search-icon">🔍</span>
-  <input type="text" id="searchInput" placeholder="Поиск по памятке (упражнения, состояния, симптомы...)" autocomplete="off">
+  <input type="text" id="searchInput" placeholder="Поиск по памятке..." autocomplete="off">
   <button class="search-clear" id="searchClear">✕</button>
 </div>
 <div class="search-results" id="searchResults"></div>
@@ -378,8 +412,8 @@ h1.page-title { font-size: 26pt; color: #2b2622; font-weight: 700; margin: 0 0 4
 <!-- САЙДБАР -->
 <aside class="sidebar" id="sidebar">
   <button class="close-sidebar" id="closeSidebar">✕</button>
-  <div class="brand">📋 <span>Памятка</span> по восстановлению</div>
-  <div class="sub">Естественные роды · Кесарево сечение</div>
+  <div class="brand">📋 <span>Памятка</span></div>
+  <div class="sub">Восстановление после родов</div>
   <nav id="navMenu">
     <a href="#cover">Обложка</a>
     <a href="#about">Об авторе</a>
@@ -403,35 +437,32 @@ h1.page-title { font-size: 26pt; color: #2b2622; font-weight: 700; margin: 0 0 4
   </nav>
 </aside>
 
-<!-- ============ ОБЛОЖКА ============ -->
-<div class="page cover" id="cover">
+<!-- ===== ОБЛОЖКА ===== -->
+<div class="cover" id="cover">
   <div class="band-top"></div>
   <div class="band-bottom"></div>
   <div class="cover-tags"><span class="cover-pill">0–6 месяцев</span></div>
-  <div class="cover-content">
-    <div class="cover-eyebrow">Памятка физической реабилитации</div>
-    <div class="cover-title">Восстановление<br>после<br><em>родов</em></div>
-    <div class="cover-divider"></div>
-    <div class="cover-subtitle">
-      Поэтапный план упражнений для естественных родов и кесарева сечения,
-      с разбором частых послеродовых состояний и признаков,
-      при которых нужно обратиться к врачу.
-    </div>
-    <div class="cover-meta">
-      <div><strong>Основано на:</strong> клинических рекомендациях WHO, ACOG, NICE, ACSM</div>
-      <div><strong>Период:</strong> 0–6 месяцев после родов</div>
-      <div><strong>Формат:</strong> практическое руководство с упражнениями и красными флагами</div>
-    </div>
+  <div class="cover-eyebrow">Памятка физической реабилитации</div>
+  <div class="cover-title">Восстановление<br>после<br><em>родов</em></div>
+  <div class="cover-divider"></div>
+  <div class="cover-subtitle">
+    Поэтапный план упражнений для естественных родов и кесарева сечения,
+    с разбором частых послеродовых состояний и признаков,
+    при которых нужно обратиться к врачу.
+  </div>
+  <div class="cover-meta">
+    <div><strong>Основано на:</strong> клинических рекомендациях WHO, ACOG, NICE, ACSM</div>
+    <div><strong>Период:</strong> 0–6 месяцев после родов</div>
+    <div><strong>Формат:</strong> практическое руководство с упражнениями и красными флагами</div>
   </div>
   <div class="cover-disclaimer">
     Документ является общим ориентиром и не заменяет консультацию врача или специалиста по работе с тазовым дном.
-    Индивидуальные сроки восстановления и допустимая нагрузка могут отличаться. Перед началом
-    занятий на любом этапе — и при появлении тревожных симптомов — обратитесь к специалисту.
+    Индивидуальные сроки восстановления и допустимая нагрузка могут отличаться. Перед началом занятий на любом этапе — и при появлении тревожных симптомов — обратитесь к специалисту.
   </div>
 </div>
 
-<!-- ============ ОБ АВТОРЕ ============ -->
-<div class="page about-page" id="about">
+<!-- ===== ОБ АВТОРЕ ===== -->
+<div class="about-page" id="about">
   <div class="about-photos">
     <div class="about-photo"><img src="photo1.jpg" alt="Фото" onerror="this.style.display='none'; this.parentElement.innerHTML='📸'"></div>
     <div class="about-photo"><img src="photo2.jpg" alt="Фото" onerror="this.style.display='none'; this.parentElement.innerHTML='📸'"></div>
@@ -444,60 +475,56 @@ h1.page-title { font-size: 26pt; color: #2b2622; font-weight: 700; margin: 0 0 4
     📸 <strong>Instagram:</strong> <a href="https://instagram.com/lena.galanova" target="_blank">@lena.galanova</a><br>
     ✉️ <strong>Email:</strong> <a href="mailto:lena_galanova@bk.ru">lena_galanova@bk.ru</a>
   </div>
-  <div class="page-footer"><span>Об авторе</span><span>Елена Кузменькова</span></div>
 </div>
 
-<!-- ============ ОГЛАВЛЕНИЕ ============ -->
-<div class="page toc-page" id="toc">
-  <div class="toc-header">
-    <div class="toc-eyebrow">Содержание</div>
-    <div class="toc-title">Структура руководства</div>
-    <div class="toc-rule"></div>
-  </div>
+<!-- ===== ОГЛАВЛЕНИЕ ===== -->
+<div class="toc-page" id="toc">
+  <div class="toc-eyebrow">Содержание</div>
+  <div class="toc-title">Структура руководства</div>
+  <div class="toc-rule"></div>
   <div class="toc-part-label">Введение</div>
-  <div class="toc-item"><span class="toc-num">·</span><span class="toc-name">Как пользоваться этой памяткой</span><span class="toc-fill"></span><span class="toc-page-num">4</span></div>
+  <div class="toc-item"><span class="toc-num">·</span><span class="toc-name">Как пользоваться этой памяткой</span><span class="toc-fill"></span><span class="toc-page-num">3</span></div>
   <div class="toc-part-label">Часть I — После естественных родов</div>
-  <div class="toc-item"><span class="toc-num">01</span><span class="toc-name">Фаза 1. Раннее восстановление</span><span class="toc-fill"></span><span class="toc-page-num">6</span></div>
+  <div class="toc-item"><span class="toc-num">01</span><span class="toc-name">Фаза 1. Раннее восстановление</span><span class="toc-fill"></span><span class="toc-page-num">5</span></div>
   <div class="toc-sub">0–6 недель</div>
-  <div class="toc-item"><span class="toc-num">02</span><span class="toc-name">Фаза 2. Укрепление</span><span class="toc-fill"></span><span class="toc-page-num">7</span></div>
+  <div class="toc-item"><span class="toc-num">02</span><span class="toc-name">Фаза 2. Укрепление</span><span class="toc-fill"></span><span class="toc-page-num">6</span></div>
   <div class="toc-sub">6–12 недель</div>
-  <div class="toc-item"><span class="toc-num">03</span><span class="toc-name">Фаза 3. Возвращение к активной жизни</span><span class="toc-fill"></span><span class="toc-page-num">8</span></div>
+  <div class="toc-item"><span class="toc-num">03</span><span class="toc-name">Фаза 3. Возвращение к активной жизни</span><span class="toc-fill"></span><span class="toc-page-num">7</span></div>
   <div class="toc-sub">3–6 месяцев</div>
   <div class="toc-part-label sage">Часть II — После кесарева сечения</div>
-  <div class="toc-item sage"><span class="toc-num">01</span><span class="toc-name">Фаза 1. Раннее восстановление</span><span class="toc-fill"></span><span class="toc-page-num">10</span></div>
+  <div class="toc-item sage"><span class="toc-num">01</span><span class="toc-name">Фаза 1. Раннее восстановление</span><span class="toc-fill"></span><span class="toc-page-num">9</span></div>
   <div class="toc-sub">0–6 недель</div>
-  <div class="toc-item sage"><span class="toc-num">02</span><span class="toc-name">Фаза 2. Восстановление функции</span><span class="toc-fill"></span><span class="toc-page-num">11</span></div>
+  <div class="toc-item sage"><span class="toc-num">02</span><span class="toc-name">Фаза 2. Восстановление функции</span><span class="toc-fill"></span><span class="toc-page-num">10</span></div>
   <div class="toc-sub">6–12 недель</div>
-  <div class="toc-item sage"><span class="toc-num">03</span><span class="toc-name">Фаза 3. Возвращение к активной жизни</span><span class="toc-fill"></span><span class="toc-page-num">12</span></div>
+  <div class="toc-item sage"><span class="toc-num">03</span><span class="toc-name">Фаза 3. Возвращение к активной жизни</span><span class="toc-fill"></span><span class="toc-page-num">11</span></div>
   <div class="toc-sub">3–6 месяцев</div>
-  <div class="toc-part-label">Часть III — Частые спутники послеродового периода</div>
-  <div class="toc-item"><span class="toc-num">·</span><span class="toc-name">Диастаз прямых мышц живота</span><span class="toc-fill"></span><span class="toc-page-num">14</span></div>
-  <div class="toc-item"><span class="toc-num">·</span><span class="toc-name">Геморрой и профилактика запоров</span><span class="toc-fill"></span><span class="toc-page-num">14</span></div>
-  <div class="toc-item"><span class="toc-num">·</span><span class="toc-name">Дисфункция тазового дна</span><span class="toc-fill"></span><span class="toc-page-num">15</span></div>
-  <div class="toc-item"><span class="toc-num">·</span><span class="toc-name">Боли в пояснице и слабость спины</span><span class="toc-fill"></span><span class="toc-page-num">15</span></div>
+  <div class="toc-part-label">Часть III — Частые спутники</div>
+  <div class="toc-item"><span class="toc-num">·</span><span class="toc-name">Диастаз</span><span class="toc-fill"></span><span class="toc-page-num">13</span></div>
+  <div class="toc-item"><span class="toc-num">·</span><span class="toc-name">Геморрой</span><span class="toc-fill"></span><span class="toc-page-num">13</span></div>
+  <div class="toc-item"><span class="toc-num">·</span><span class="toc-name">Тазовое дно</span><span class="toc-fill"></span><span class="toc-page-num">14</span></div>
+  <div class="toc-item"><span class="toc-num">·</span><span class="toc-name">Боли в спине</span><span class="toc-fill"></span><span class="toc-page-num">14</span></div>
   <div class="toc-part-label">В заключение</div>
-  <div class="toc-item"><span class="toc-num">·</span><span class="toc-name">Сводная таблица красных флагов</span><span class="toc-fill"></span><span class="toc-page-num">16</span></div>
-  <div class="toc-item"><span class="toc-num">·</span><span class="toc-name">Итоговые рекомендации</span><span class="toc-fill"></span><span class="toc-page-num">17</span></div>
+  <div class="toc-item"><span class="toc-num">·</span><span class="toc-name">Красные флаги</span><span class="toc-fill"></span><span class="toc-page-num">15</span></div>
+  <div class="toc-item"><span class="toc-num">·</span><span class="toc-name">Итоговые рекомендации</span><span class="toc-fill"></span><span class="toc-page-num">16</span></div>
 </div>
 
-<!-- ============ ВВЕДЕНИЕ ============ -->
-<div class="page content-page" id="intro">
+<!-- ===== ВВЕДЕНИЕ ===== -->
+<div class="content-page" id="intro">
   <div class="section-kicker ink">Введение</div>
   <h1 class="page-title">Как пользоваться этой памяткой</h1>
   <div class="intro-text">
     Тело проходит через значительную перестройку во время беременности и родов, и его восстановление
     требует времени, терпения и постепенной, грамотно выстроенной нагрузки. Этот документ описывает
     два параллельных маршрута восстановления — после <strong>естественных родов</strong> и после
-    <strong>кесарева сечения</strong> — а также разбирает состояния, которые встречаются почти у всех
-    женщин в послеродовом периоде, независимо от способа родов.
+    <strong>кесарева сечения</strong>.
   </div>
   <div class="stat-grid">
-    <div class="stat-box"><span class="stat-num">3</span><span class="stat-label">фазы восстановления<br>в каждом маршруте</span></div>
-    <div class="stat-box"><span class="stat-num">6</span><span class="stat-label">месяцев — горизонт<br>полного плана</span></div>
-    <div class="stat-box"><span class="stat-num">100%</span><span class="stat-label">женщин имеют естественное<br>растяжение белой линии живота</span></div>
+    <div class="stat-box"><span class="stat-num">3</span><span class="stat-label">фазы восстановления</span></div>
+    <div class="stat-box"><span class="stat-num">6</span><span class="stat-label">месяцев — полный план</span></div>
+    <div class="stat-box"><span class="stat-num">100%</span><span class="stat-label">женщин — растяжение белой линии</span></div>
   </div>
   <div class="how-to-use">
-    <div class="htu-row"><div class="htu-icon"></div><div class="htu-text"><strong>Выберите свой маршрут.</strong> Часть I — для родов через естественные пути, Часть II — для кесарева сечения.</div></div>
+    <div class="htu-row"><div class="htu-icon"></div><div class="htu-text"><strong>Выберите свой маршрут.</strong> Часть I — для естественных родов, Часть II — для кесарева сечения.</div></div>
     <div class="htu-row"><div class="htu-icon"></div><div class="htu-text"><strong>Двигайтесь по фазам последовательно.</strong> Переход — по готовности тела и разрешению врача.</div></div>
     <div class="htu-row"><div class="htu-icon"></div><div class="htu-text"><strong>Следите за красными флагами.</strong> Это инструмент безопасности.</div></div>
     <div class="htu-row"><div class="htu-icon"></div><div class="htu-text"><strong>Прочитайте Часть III.</strong> Актуальна для любого типа родов.</div></div>
@@ -505,26 +532,22 @@ h1.page-title { font-size: 26pt; color: #2b2622; font-weight: 700; margin: 0 0 4
   <div class="callout">
     <strong>Важное примечание.</strong> Перед началом занятий — консультация с врачом или специалистом по работе с тазовым дном обязательна.
   </div>
-  <div class="page-footer"><span>Восстановление после родов</span><span>Введение</span></div>
 </div>
 
-<!-- ============ PART I DIVIDER ============ -->
-<div class="page divider-page terracotta" id="part1-divider">
-  <div class="divider-corner"></div><div class="divider-corner2"></div>
-  <div class="divider-content">
-    <div class="divider-roman">ЧАСТЬ I</div>
-    <div class="divider-title">После<br>естественных родов</div>
-    <div class="divider-desc">Восстановление тканей промежности, активация мышц тазового дна и кора — от первых дней до полноценной тренировочной нагрузки через полгода.</div>
-    <div class="divider-phases">
-      <div class="divider-phase"><div class="divider-phase-num">01</div><div class="divider-phase-name">Раннее восстановление</div><div class="divider-phase-time">0–6 недель</div></div>
-      <div class="divider-phase"><div class="divider-phase-num">02</div><div class="divider-phase-name">Укрепление</div><div class="divider-phase-time">6–12 недель</div></div>
-      <div class="divider-phase"><div class="divider-phase-num">03</div><div class="divider-phase-name">Возвращение к активной жизни</div><div class="divider-phase-time">3–6 месяцев</div></div>
-    </div>
+<!-- ===== РАЗДЕЛИТЕЛЬ ЧАСТЬ I ===== -->
+<div class="divider-page terracotta" id="part1-divider">
+  <div class="divider-roman">ЧАСТЬ I</div>
+  <div class="divider-title">После естественных родов</div>
+  <div class="divider-desc">Восстановление тканей промежности, активация мышц тазового дна и кора — от первых дней до полноценной тренировочной нагрузки через полгода.</div>
+  <div class="divider-phases">
+    <div class="divider-phase"><div class="divider-phase-num">01</div><div class="divider-phase-name">Раннее восстановление</div><div class="divider-phase-time">0–6 недель</div></div>
+    <div class="divider-phase"><div class="divider-phase-num">02</div><div class="divider-phase-name">Укрепление</div><div class="divider-phase-time">6–12 недель</div></div>
+    <div class="divider-phase"><div class="divider-phase-num">03</div><div class="divider-phase-name">Возвращение к активной жизни</div><div class="divider-phase-time">3–6 месяцев</div></div>
   </div>
 </div>
 
-<!-- ============ ЕСТЕСТВЕННЫЕ РОДЫ ФАЗА 1 ============ -->
-<div class="page content-page" id="vaginal-phase1">
+<!-- ===== ЕСТЕСТВЕННЫЕ РОДЫ ФАЗА 1 ===== -->
+<div class="content-page" id="vaginal-phase1">
   <div class="page-tab terracotta">Часть I · Естественные роды</div>
   <div class="phase-header"><div class="phase-tag">01</div><div class="phase-titleblock"><h1>Раннее восстановление</h1><div class="phase-weeks">0–6 недель после родов</div></div></div>
   <div class="flags-box">
@@ -542,11 +565,10 @@ h1.page-title { font-size: 26pt; color: #2b2622; font-weight: 700; margin: 0 0 4
   <div class="exercise-card" data-exercise="kegel-slow"><div class="emoji">⏳</div><div class="info"><div class="name">Изолированные сокращения (медленные)</div><div class="hint">нажмите для техники</div></div></div>
   <div class="exercise-card" data-exercise="pelvic-tilt"><div class="emoji">🔄</div><div class="info"><div class="name">Наклон таза</div><div class="hint">нажмите для техники</div></div></div>
   <div class="exercise-card" data-exercise="walking"><div class="emoji">🚶‍♀️</div><div class="info"><div class="name">Ходьба</div><div class="hint">нажмите для техники</div></div></div>
-  <div class="page-footer"><span>Часть I · Естественные роды</span><span>Фаза 1 — Раннее восстановление</span></div>
 </div>
 
-<!-- ============ ЕСТЕСТВЕННЫЕ РОДЫ ФАЗА 2 ============ -->
-<div class="page content-page" id="vaginal-phase2">
+<!-- ===== ЕСТЕСТВЕННЫЕ РОДЫ ФАЗА 2 ===== -->
+<div class="content-page" id="vaginal-phase2">
   <div class="page-tab terracotta">Часть I · Естественные роды</div>
   <div class="phase-header"><div class="phase-tag">02</div><div class="phase-titleblock"><h1>Укрепление</h1><div class="phase-weeks">6–12 недель после родов</div></div></div>
   <span class="required-note">Требуется разрешение врача</span>
@@ -564,11 +586,10 @@ h1.page-title { font-size: 26pt; color: #2b2622; font-weight: 700; margin: 0 0 4
   <div class="exercise-card" data-exercise="glute-bridge"><div class="emoji">⬆️</div><div class="info"><div class="name">Ягодичный мостик</div><div class="hint">нажмите для техники</div></div></div>
   <div class="exercise-card" data-exercise="dead-bug"><div class="emoji">🐞</div><div class="info"><div class="name">Подъём ног («мёртвый жук»)</div><div class="hint">нажмите для техники</div></div></div>
   <div class="exercise-card" data-exercise="aerobic"><div class="emoji">🏊</div><div class="info"><div class="name">Аэробные нагрузки</div><div class="hint">нажмите для техники</div></div></div>
-  <div class="page-footer"><span>Часть I · Естественные роды</span><span>Фаза 2 — Укрепление</span></div>
 </div>
 
-<!-- ============ ЕСТЕСТВЕННЫЕ РОДЫ ФАЗА 3 ============ -->
-<div class="page content-page" id="vaginal-phase3">
+<!-- ===== ЕСТЕСТВЕННЫЕ РОДЫ ФАЗА 3 ===== -->
+<div class="content-page" id="vaginal-phase3">
   <div class="page-tab terracotta">Часть I · Естественные роды</div>
   <div class="phase-header"><div class="phase-tag">03</div><div class="phase-titleblock"><h1>Возвращение к активной жизни</h1><div class="phase-weeks">3–6 месяцев после родов</div></div></div>
   <div class="flags-box">
@@ -582,27 +603,23 @@ h1.page-title { font-size: 26pt; color: #2b2622; font-weight: 700; margin: 0 0 4
   <div class="goal-box"><span class="goal-label">Цель фазы</span>Полное восстановление силы и выносливости, возвращение к привычным видам спорта.</div>
   <div class="exercises-label">Прогрессия упражнений</div>
   <div class="exercise-card" data-exercise="couch-to-5k"><div class="emoji">🏃‍♀️</div><div class="info"><div class="name">От ходьбы к бегу</div><div class="hint">нажмите для техники</div></div></div>
-  <div class="exercise-card" data-exercise="core-advanced"><div class="emoji">💪</div><div class="info"><div class="name">Упражнения на мышцы кора, включая скручивания</div><div class="hint">нажмите для техники</div></div></div>
-  <div class="page-footer"><span>Часть I · Естественные роды</span><span>Фаза 3 — Возвращение к активной жизни</span></div>
+  <div class="exercise-card" data-exercise="core-advanced"><div class="emoji">💪</div><div class="info"><div class="name">Упражнения на мышцы кора</div><div class="hint">нажмите для техники</div></div></div>
 </div>
 
-<!-- ============ PART II DIVIDER ============ -->
-<div class="page divider-page sage" id="part2-divider">
-  <div class="divider-corner"></div><div class="divider-corner2"></div>
-  <div class="divider-content">
-    <div class="divider-roman">ЧАСТЬ II</div>
-    <div class="divider-title">После<br>кесарева сечения</div>
-    <div class="divider-desc">Восстановление после кесарева сечения требует больше времени. Шов, слабость мышц живота и риск спаек требуют особой осторожности.</div>
-    <div class="divider-phases">
-      <div class="divider-phase"><div class="divider-phase-num">01</div><div class="divider-phase-name">Раннее восстановление</div><div class="divider-phase-time">0–6 недель</div></div>
-      <div class="divider-phase"><div class="divider-phase-num">02</div><div class="divider-phase-name">Восстановление функции</div><div class="divider-phase-time">6–12 недель</div></div>
-      <div class="divider-phase"><div class="divider-phase-num">03</div><div class="divider-phase-name">Возвращение к активной жизни</div><div class="divider-phase-time">3–6 месяцев</div></div>
-    </div>
+<!-- ===== РАЗДЕЛИТЕЛЬ ЧАСТЬ II ===== -->
+<div class="divider-page sage" id="part2-divider">
+  <div class="divider-roman">ЧАСТЬ II</div>
+  <div class="divider-title">После кесарева сечения</div>
+  <div class="divider-desc">Восстановление после кесарева сечения требует больше времени. Шов, слабость мышц живота и риск спаек требуют особой осторожности.</div>
+  <div class="divider-phases">
+    <div class="divider-phase"><div class="divider-phase-num">01</div><div class="divider-phase-name">Раннее восстановление</div><div class="divider-phase-time">0–6 недель</div></div>
+    <div class="divider-phase"><div class="divider-phase-num">02</div><div class="divider-phase-name">Восстановление функции</div><div class="divider-phase-time">6–12 недель</div></div>
+    <div class="divider-phase"><div class="divider-phase-num">03</div><div class="divider-phase-name">Возвращение к активной жизни</div><div class="divider-phase-time">3–6 месяцев</div></div>
   </div>
 </div>
 
-<!-- ============ КЕСАРЕВО ФАЗА 1 ============ -->
-<div class="page content-page" id="cs-phase1">
+<!-- ===== КЕСАРЕВО ФАЗА 1 ===== -->
+<div class="content-page" id="cs-phase1">
   <div class="page-tab sage">Часть II · Кесарево сечение</div>
   <div class="phase-header"><div class="phase-tag sage">01</div><div class="phase-titleblock"><h1>Раннее восстановление</h1><div class="phase-weeks">0–6 недель после операции</div></div></div>
   <span class="required-note">Начинать только с разрешения врача</span>
@@ -622,11 +639,10 @@ h1.page-title { font-size: 26pt; color: #2b2622; font-weight: 700; margin: 0 0 4
   <div class="exercise-card" data-exercise="walking"><div class="emoji">🚶‍♀️</div><div class="info"><div class="name">Ходьба</div><div class="hint">нажмите для техники</div></div></div>
   <div class="exercise-card" data-exercise="belly-work"><div class="emoji">🤲</div><div class="info"><div class="name">Работа с животом</div><div class="hint">нажмите для техники</div></div></div>
   <div class="forbidden-box"><strong>Категорически запрещено:</strong> поднимать тяжести (что-либо тяжелее ребёнка), скручивания, наклоны.</div>
-  <div class="page-footer"><span>Часть II · Кесарево сечение</span><span>Фаза 1 — Раннее восстановление</span></div>
 </div>
 
-<!-- ============ КЕСАРЕВО ФАЗА 2 ============ -->
-<div class="page content-page" id="cs-phase2">
+<!-- ===== КЕСАРЕВО ФАЗА 2 ===== -->
+<div class="content-page" id="cs-phase2">
   <div class="page-tab sage">Часть II · Кесарево сечение</div>
   <div class="phase-header"><div class="phase-tag sage">02</div><div class="phase-titleblock"><h1>Восстановление функции</h1><div class="phase-weeks">6–12 недель после операции</div></div></div>
   <span class="required-note">Обязательно разрешение врача</span>
@@ -645,11 +661,10 @@ h1.page-title { font-size: 26pt; color: #2b2622; font-weight: 700; margin: 0 0 4
   <div class="exercise-card" data-exercise="bird-dog"><div class="emoji">🐕</div><div class="info"><div class="name">«Птица-собака»</div><div class="hint">нажмите для техники</div></div></div>
   <div class="exercise-card" data-exercise="aerobic"><div class="emoji">🏊</div><div class="info"><div class="name">Аэробные нагрузки</div><div class="hint">нажмите для техники</div></div></div>
   <div class="exercise-card" data-exercise="scar-work"><div class="emoji">🩹</div><div class="info"><div class="name">Работа со швом</div><div class="hint">нажмите для техники</div></div></div>
-  <div class="page-footer"><span>Часть II · Кесарево сечение</span><span>Фаза 2 — Восстановление функции</span></div>
 </div>
 
-<!-- ============ КЕСАРЕВО ФАЗА 3 ============ -->
-<div class="page content-page" id="cs-phase3">
+<!-- ===== КЕСАРЕВО ФАЗА 3 ===== -->
+<div class="content-page" id="cs-phase3">
   <div class="page-tab sage">Часть II · Кесарево сечение</div>
   <div class="phase-header"><div class="phase-tag sage">03</div><div class="phase-titleblock"><h1>Возвращение к активной жизни</h1><div class="phase-weeks">3–6 месяцев после операции</div></div></div>
   <div class="flags-box">
@@ -665,21 +680,17 @@ h1.page-title { font-size: 26pt; color: #2b2622; font-weight: 700; margin: 0 0 4
   <div class="exercise-card" data-exercise="couch-to-5k"><div class="emoji">🏃‍♀️</div><div class="info"><div class="name">Бег и прыжки</div><div class="hint">нажмите для техники</div></div></div>
   <div class="exercise-card" data-exercise="core-advanced"><div class="emoji">💪</div><div class="info"><div class="name">Упражнения на пресс</div><div class="hint">нажмите для техники</div></div></div>
   <div class="callout sage"><strong>Важно.</strong> Если образуется «конус» — избегайте скручиваний.</div>
-  <div class="page-footer"><span>Часть II · Кесарево сечение</span><span>Фаза 3 — Возвращение к активной жизни</span></div>
 </div>
 
-<!-- ============ PART III DIVIDER ============ -->
-<div class="page divider-page terracotta" id="part3-divider">
-  <div class="divider-corner"></div><div class="divider-corner2"></div>
-  <div class="divider-content">
-    <div class="divider-roman">ЧАСТЬ III</div>
-    <div class="divider-title">Частые спутники<br>послеродового периода</div>
-    <div class="divider-desc">Геморрой, диастаз, дисфункции тазового дна и боли в спине — все они хорошо поддаются коррекции при правильном подходе.</div>
-  </div>
+<!-- ===== РАЗДЕЛИТЕЛЬ ЧАСТЬ III ===== -->
+<div class="divider-page terracotta" id="part3-divider">
+  <div class="divider-roman">ЧАСТЬ III</div>
+  <div class="divider-title">Частые спутники</div>
+  <div class="divider-desc">Геморрой, диастаз, дисфункции тазового дна и боли в спине — все они хорошо поддаются коррекции при правильном подходе.</div>
 </div>
 
-<!-- ============ ДИАСТАЗ ============ -->
-<div class="page content-page" id="diastasis">
+<!-- ===== ДИАСТАЗ ===== -->
+<div class="content-page" id="diastasis">
   <div class="page-tab terracotta">Часть III · Частые спутники</div>
   <div class="section-kicker terracotta">Состояние 1 из 4</div>
   <h1 class="page-title">Диастаз прямых мышц живота</h1>
@@ -689,31 +700,28 @@ h1.page-title { font-size: 26pt; color: #2b2622; font-weight: 700; margin: 0 0 4
   </div>
   <div class="companion-card"><div class="companion-head"><div class="companion-icon"></div><div class="companion-title">Что это</div></div><div class="companion-body"><p>Естественное растяжение соединительнотканной линии между прямыми мышцами живота. <strong>100% женщин</strong> к концу беременности.</p></div></div>
   <div class="companion-card"><div class="companion-head"><div class="companion-icon" style="background:#8b3a5e;"></div><div class="companion-title">Как тренироваться</div></div><div class="companion-body"><p><span class="mini-label tag-no">Запрещено:</span> скручивания, планки, подъёмы ног.</p><p><span class="mini-label tag-yes">Можно:</span> диафрагмальное дыхание, «птица-собака», «мёртвый жук».</p></div></div>
-  <div class="page-footer"><span>Часть III</span><span>Диастаз</span></div>
 </div>
 
-<!-- ============ ГЕМОРРОЙ ============ -->
-<div class="page content-page" id="hemorrhoids">
+<!-- ===== ГЕМОРРОЙ ===== -->
+<div class="content-page" id="hemorrhoids">
   <div class="page-tab terracotta">Часть III · Частые спутники</div>
   <div class="section-kicker terracotta">Состояние 2 из 4</div>
   <h1 class="page-title">Геморрой и профилактика запоров</h1>
   <div class="companion-card"><div class="companion-head"><div class="companion-icon"></div><div class="companion-title">Причина</div></div><div class="companion-body"><p>Повышенное давление вен малого таза во время беременности и натуживание в родах.</p></div></div>
   <div class="companion-card"><div class="companion-head"><div class="companion-icon" style="background:#8b3a5e;"></div><div class="companion-title">Профилактика</div></div><div class="companion-body"><p><strong>Диета и питьё:</strong> клетчатка и 1,5–2 литра воды в день.</p><p><strong>Изолированные сокращения</strong> улучшают кровообращение.</p></div></div>
-  <div class="page-footer"><span>Часть III</span><span>Геморрой</span></div>
 </div>
 
-<!-- ============ ТАЗОВОЕ ДНО ============ -->
-<div class="page content-page" id="pelvicfloor">
+<!-- ===== ТАЗОВОЕ ДНО ===== -->
+<div class="content-page" id="pelvicfloor">
   <div class="page-tab terracotta">Часть III · Частые спутники</div>
   <div class="section-kicker terracotta">Состояние 3 из 4</div>
   <h1 class="page-title">Дисфункция тазового дна</h1>
   <div class="companion-card"><div class="companion-head"><div class="companion-icon"></div><div class="companion-title">Проблема</div></div><div class="companion-body"><p>Ослабление мышц тазового дна может приводить к недержанию мочи (до <strong>30–40% женщин</strong>).</p></div></div>
   <div class="companion-card"><div class="companion-head"><div class="companion-icon" style="background:#2d5a3d;"></div><div class="companion-title">Изолированные сокращения</div></div><div class="companion-body"><p><strong>Медленные:</strong> сжать, удержать 10 сек, расслабить. 10 повторений, 3 подхода в день.</p><p><strong>Быстрые:</strong> сжать и расслабить по 2 секунды. 10 повторений.</p></div></div>
-  <div class="page-footer"><span>Часть III</span><span>Тазовое дно</span></div>
 </div>
 
-<!-- ============ БОЛИ В СПИНЕ ============ -->
-<div class="page content-page" id="backpain">
+<!-- ===== БОЛИ В СПИНЕ ===== -->
+<div class="content-page" id="backpain">
   <div class="page-tab terracotta">Часть III · Частые спутники</div>
   <div class="section-kicker terracotta">Состояние 4 из 4</div>
   <h1 class="page-title">Боли в пояснице</h1>
@@ -723,11 +731,10 @@ h1.page-title { font-size: 26pt; color: #2b2622; font-weight: 700; margin: 0 0 4
   </div>
   <div class="companion-card"><div class="companion-head"><div class="companion-icon"></div><div class="companion-title">Причина</div></div><div class="companion-body"><p>Ослабление мышц кора и влияние релаксина (связки размягчены до 3–4 месяцев).</p></div></div>
   <div class="companion-card"><div class="companion-head"><div class="companion-icon" style="background:#8b3a5e;"></div><div class="companion-title">Как помочь</div></div><div class="companion-body"><p><strong>Укрепляйте кор.</strong> Не поднимайте ребёнка с прямой спиной — приседайте.</p><p>К бегу и прыжкам возвращайтесь не ранее 3–4 месяцев.</p></div></div>
-  <div class="page-footer"><span>Часть III</span><span>Боли в спине</span></div>
 </div>
 
-<!-- ============ СВОДНАЯ ТАБЛИЦА ============ -->
-<div class="page content-page" id="redflags-summary">
+<!-- ===== КРАСНЫЕ ФЛАГИ ===== -->
+<div class="content-page" id="redflags-summary">
   <div class="section-kicker ink">Сводная таблица</div>
   <h1 class="page-title">Красные флаги по фазам</h1>
   <table class="summary-table">
@@ -741,11 +748,10 @@ h1.page-title { font-size: 26pt; color: #2b2622; font-weight: 700; margin: 0 0 4
     <tr><td>Любой тип</td><td class="phase-cell">Диастаз</td><td>Появление «конуса» при напряжении</td></tr>
     <tr><td>Любой тип</td><td class="phase-cell">Спина</td><td>Боль в спине или тазу</td></tr>
   </table>
-  <div class="page-footer"><span>Сводная таблица</span><span>Красные флаги</span></div>
 </div>
 
-<!-- ============ ИТОГОВЫЕ РЕКОМЕНДАЦИИ ============ -->
-<div class="page content-page" id="final">
+<!-- ===== ИТОГОВЫЕ РЕКОМЕНДАЦИИ ===== -->
+<div class="content-page" id="final">
   <div class="section-kicker ink">В заключение</div>
   <h1 class="page-title">Итоговые рекомендации</h1>
   <ul class="final-list">
@@ -755,20 +761,17 @@ h1.page-title { font-size: 26pt; color: #2b2622; font-weight: 700; margin: 0 0 4
     <li><span class="final-num">04</span><span class="final-text"><strong>Профилактика геморроя начинается с питания.</strong> Пейте воду, ешьте клетчатку.</span></li>
   </ul>
   <div class="closing-note"><strong>Если симптомы сохраняются</strong> — обратитесь к специалисту по работе с тазовым дном.</div>
-  <div class="page-footer"><span>В заключение</span><span>Итоговые рекомендации</span></div>
 </div>
 
-<!-- ============ ЗАДНЯЯ ОБЛОЖКА ============ -->
-<div class="page back-cover" id="back">
-  <div class="back-content">
-    <div class="back-mark"></div>
-    <div class="back-title">Восстановление после родов</div>
-    <div class="back-text">Эта памятка — общий ориентир. Не заменяет консультацию врача или специалиста по работе с тазовым дном.</div>
-    <div class="back-sources">WHO · ACOG · NICE · ACSM</div>
-  </div>
+<!-- ===== ЗАДНЯЯ ОБЛОЖКА ===== -->
+<div class="back-cover" id="back">
+  <div class="back-mark"></div>
+  <div class="back-title">Восстановление после родов</div>
+  <div class="back-text">Эта памятка — общий ориентир. Не заменяет консультацию врача или специалиста по работе с тазовым дном.</div>
+  <div class="back-sources">WHO · ACOG · NICE · ACSM</div>
 </div>
 
-<!-- ============ МОДАЛЬНОЕ ОКНО ============ -->
+<!-- ===== МОДАЛЬНОЕ ОКНО ===== -->
 <div class="modal-overlay" id="modalOverlay">
   <div class="modal-box">
     <button class="close-btn" id="modalClose">✕</button>
@@ -781,88 +784,22 @@ h1.page-title { font-size: 26pt; color: #2b2622; font-weight: 700; margin: 0 0 4
   </div>
 </div>
 
-<!-- ============ JAVASCRIPT ============ -->
 <script>
 (function() {
   const EXERCISE_DATA = {
-    'diaphragmatic': {
-      title: '🌬️ Дыхание животом (диафрагмальное)',
-      video: 'diaphragmatic.mp4',
-      desc: 'Лежа на спине с согнутыми коленями, руки на животе. Вдох — живот поднимается, выдох — опускается. Дышите глубоко, без напряжения.',
-      reps: '2–3 раза в день по 5–10 глубоких циклов'
-    },
-    'kegel-slow': {
-      title: '⏳ Изолированные сокращения (медленные)',
-      video: 'kegel-slow.mp4',
-      desc: 'Сожмите мышцы, как будто пытаетесь остановить мочеиспускание, и удерживайте. Затем расслабьте на 10 секунд.',
-      reps: 'Удержание 5–10 сек · 10 повторений · 3 раза в день'
-    },
-    'pelvic-tilt': {
-      title: '🔄 Наклон таза',
-      video: 'pelvic-tilt.mp4',
-      desc: 'Лежа на спине, согнув колени, прижмите поясницу к полу, напрягая ягодицы и низ живота. Удержите 5 секунд.',
-      reps: '10–15 повторений'
-    },
-    'walking': {
-      title: '🚶‍♀️ Ходьба',
-      video: 'walking.mp4',
-      desc: 'Короткие прогулки по дому или на улице. Начинайте с 5–10 минут, постепенно увеличивая до 20–30 минут.',
-      reps: 'Ежедневно по самочувствию'
-    },
-    'kegel-fast': {
-      title: '⚡ Изолированные сокращения (быстрые)',
-      video: 'kegel-fast.mp4',
-      desc: 'Сожмите и сразу расслабьте мышцы тазового дна в быстром темпе. Делайте 10 быстрых + 10 медленных с удержанием 10 сек.',
-      reps: '3 подхода в день'
-    },
-    'glute-bridge': {
-      title: '⬆️ Ягодичный мостик',
-      video: 'glute-bridge.mp4',
-      desc: 'Лежа на спине, согнув колени, стопы на полу. Поднимите таз вверх, напрягая ягодицы. Задержитесь в верхней точке на 2–3 секунды.',
-      reps: '3 подхода по 15 повторений'
-    },
-    'dead-bug': {
-      title: '🐞 «Мёртвый жук»',
-      video: 'dead-bug.mp4',
-      desc: 'Лежа на спине, согните колени под 90° (голени параллельно полу). Поочередно выпрямляйте одну ногу, скользя пяткой по полу.',
-      reps: '2 подхода по 10–12 раз на каждую ногу'
-    },
-    'aerobic': {
-      title: '🏊 Аэробные нагрузки',
-      video: 'aerobic.mp4',
-      desc: 'Быстрая ходьба, плавание кролем, велотренажер. Умеренная интенсивность, без ударной нагрузки.',
-      reps: '150 минут в неделю (можно разбить по 20–25 минут в день)'
-    },
-    'couch-to-5k': {
-      title: '🏃‍♀️ От ходьбы к бегу',
-      video: 'couch-to-5k.mp4',
-      desc: 'Программа «ходьба-бег»: начинайте с интервалов (например, ходьба 60 сек, бег 30 сек). Постепенно увеличивайте время бега.',
-      reps: '3 раза в неделю, по программе NHS'
-    },
-    'core-advanced': {
-      title: '💪 Упражнения на мышцы кора',
-      video: 'core-advanced.mp4',
-      desc: 'Скручивания, планка, подъемы ног — только если нет «конуса» (выпячивания) на животе и недержания. Начните с 2 подходов по 10 раз.',
-      reps: '2–3 подхода по 10–15 повторений'
-    },
-    'bird-dog': {
-      title: '🐕 «Птица-собака» (Bird Dog)',
-      video: 'bird-dog.mp4',
-      desc: 'В упоре на четвереньках (колени под бёдрами, руки под плечами). Вытяните левую руку вперёд и правую ногу назад, сохраняя корпус неподвижным, без прогиба.',
-      reps: '2–3 подхода по 10 раз на каждую сторону'
-    },
-    'belly-work': {
-      title: '🤲 Работа с животом',
-      video: 'belly-work.mp4',
-      desc: 'Делаем лёгкие пощипывания живота вокруг шва. Движения мягкие, без боли.',
-      reps: 'По 1–2 минуты 2–3 раза в день'
-    },
-    'scar-work': {
-      title: '🩹 Работа со швом',
-      video: 'scar-work.mp4',
-      desc: 'Аккуратная работа со швом, если он уже зажил. Мягкие поглаживания и круговые движения.',
-      reps: '3–5 минут ежедневно'
-    }
+    'diaphragmatic': { title: '🌬️ Дыхание животом', video: 'diaphragmatic.mp4', desc: 'Лежа на спине...', reps: '2–3 раза в день' },
+    'kegel-slow': { title: '⏳ Изолированные сокращения (медленные)', video: 'kegel-slow.mp4', desc: 'Сожмите мышцы...', reps: '10 повторений, 3 раза в день' },
+    'pelvic-tilt': { title: '🔄 Наклон таза', video: 'pelvic-tilt.mp4', desc: 'Лежа на спине...', reps: '10–15 повторений' },
+    'walking': { title: '🚶‍♀️ Ходьба', video: 'walking.mp4', desc: 'Короткие прогулки...', reps: '5–30 минут ежедневно' },
+    'kegel-fast': { title: '⚡ Изолированные сокращения (быстрые)', video: 'kegel-fast.mp4', desc: 'Сжимайте и расслабляйте...', reps: '10 быстрых + 10 медленных' },
+    'glute-bridge': { title: '⬆️ Ягодичный мостик', video: 'glute-bridge.mp4', desc: 'Лежа на спине...', reps: '3 подхода по 15' },
+    'dead-bug': { title: '🐞 «Мёртвый жук»', video: 'dead-bug.mp4', desc: 'Лежа на спине...', reps: '2 подхода по 10–12' },
+    'aerobic': { title: '🏊 Аэробные нагрузки', video: 'aerobic.mp4', desc: 'Быстрая ходьба, плавание...', reps: '150 минут в неделю' },
+    'couch-to-5k': { title: '🏃‍♀️ От ходьбы к бегу', video: 'couch-to-5k.mp4', desc: 'Программа ходьба-бег...', reps: '3 раза в неделю' },
+    'core-advanced': { title: '💪 Упражнения на кор', video: 'core-advanced.mp4', desc: 'Скручивания, планка...', reps: '2–3 подхода по 10–15' },
+    'bird-dog': { title: '🐕 Птица-собака', video: 'bird-dog.mp4', desc: 'В упоре на четвереньках...', reps: '2–3 подхода по 10 раз' },
+    'belly-work': { title: '🤲 Работа с животом', video: 'belly-work.mp4', desc: 'Лёгкие пощипывания вокруг шва...', reps: '1–2 минуты 2–3 раза в день' },
+    'scar-work': { title: '🩹 Работа со швом', video: 'scar-work.mp4', desc: 'Мягкие поглаживания...', reps: '3–5 минут ежедневно' }
   };
 
   const modalOverlay = document.getElementById('modalOverlay');
@@ -922,9 +859,8 @@ h1.page-title { font-size: 26pt; color: #2b2622; font-weight: 700; margin: 0 0 4
   if (overlay) overlay.addEventListener('click', closeSidebarFn);
 
   // НАВИГАЦИЯ
-  const sections = document.querySelectorAll('.page');
+  const sections = document.querySelectorAll('.cover, .about-page, .toc-page, .content-page, .divider-page, .back-cover');
   const navLinks = document.querySelectorAll('#navMenu a');
-  let ticking = false;
 
   function updateActiveNav() {
     let current = '';
@@ -943,13 +879,7 @@ h1.page-title { font-size: 26pt; color: #2b2622; font-weight: 700; margin: 0 0 4
   }
 
   window.addEventListener('scroll', () => {
-    if (!ticking) {
-      window.requestAnimationFrame(() => {
-        updateActiveNav();
-        ticking = false;
-      });
-      ticking = true;
-    }
+    window.requestAnimationFrame(updateActiveNav);
   });
 
   navLinks.forEach(link => {
@@ -971,7 +901,7 @@ h1.page-title { font-size: 26pt; color: #2b2622; font-weight: 700; margin: 0 0 4
   const searchResults = document.getElementById('searchResults');
   const searchClear = document.getElementById('searchClear');
 
-  const pages = document.querySelectorAll('.page');
+  const pages = document.querySelectorAll('.cover, .about-page, .toc-page, .content-page, .divider-page, .back-cover');
   const searchableItems = [];
 
   pages.forEach(page => {
@@ -982,7 +912,7 @@ h1.page-title { font-size: 26pt; color: #2b2622; font-weight: 700; margin: 0 0 4
     elements.forEach(el => {
       const text = el.textContent.trim();
       if (text.length > 10) {
-        searchableItems.push({ text, pageId, pageTitle, element: el, section: page.querySelector('.section-kicker')?.textContent?.trim() || page.querySelector('.page-tab')?.textContent?.trim() || '' });
+        searchableItems.push({ text, pageId, pageTitle, element: el, section: page.querySelector('.section-kicker')?.textContent?.trim() || '' });
       }
     });
   });
